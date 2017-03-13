@@ -7,7 +7,13 @@
 //
 
 #import <Messages/Messages.h>
+#import "UALBaseMessageViewController.h"
+#import "UALFlightStatusMainViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface MessagesViewController : MSMessagesAppViewController
+@interface MessagesViewController : MSMessagesAppViewController<UALBaseMessageViewControllerDelegate, UIAlertViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UIView *messagesView;
+
 
 @end

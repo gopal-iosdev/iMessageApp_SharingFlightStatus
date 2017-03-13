@@ -13,6 +13,10 @@
 		4B2A46DC1E71BB1200B016D6 /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2A46DB1E71BB1200B016D6 /* MessagesViewController.m */; };
 		4B2A46DF1E71BB1200B016D6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2A46DD1E71BB1200B016D6 /* MainInterface.storyboard */; };
 		4B2A46E11E71BB1200B016D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2A46E01E71BB1200B016D6 /* Assets.xcassets */; };
+		4B2A47021E73630300B016D6 /* UALBaseMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2A47011E73630200B016D6 /* UALBaseMessageViewController.m */; };
+		4B2A47051E73D5A300B016D6 /* UALFlightStatusMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2A47041E73D5A300B016D6 /* UALFlightStatusMainViewController.m */; };
+		4B4F582F1E74BF0A00E02400 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4F582E1E74BF0A00E02400 /* UIKit.framework */; };
+		4B4F58311E75FE5400E02400 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4F58301E75FE5400E02400 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,12 @@
 		4B2A46DE1E71BB1200B016D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		4B2A46E01E71BB1200B016D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B2A46E21E71BB1200B016D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B2A47001E73630200B016D6 /* UALBaseMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UALBaseMessageViewController.h; sourceTree = "<group>"; };
+		4B2A47011E73630200B016D6 /* UALBaseMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UALBaseMessageViewController.m; sourceTree = "<group>"; };
+		4B2A47031E73D5A300B016D6 /* UALFlightStatusMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UALFlightStatusMainViewController.h; sourceTree = "<group>"; };
+		4B2A47041E73D5A300B016D6 /* UALFlightStatusMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UALFlightStatusMainViewController.m; sourceTree = "<group>"; };
+		4B4F582E1E74BF0A00E02400 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4B4F58301E75FE5400E02400 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B4F58311E75FE5400E02400 /* WebKit.framework in Frameworks */,
+				4B4F582F1E74BF0A00E02400 /* UIKit.framework in Frameworks */,
 				4B2A46D81E71BB1200B016D6 /* Messages.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +107,8 @@
 		4B2A46D61E71BB1200B016D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B4F58301E75FE5400E02400 /* WebKit.framework */,
+				4B4F582E1E74BF0A00E02400 /* UIKit.framework */,
 				4B2A46D71E71BB1200B016D6 /* Messages.framework */,
 			);
 			name = Frameworks;
@@ -105,6 +119,10 @@
 			children = (
 				4B2A46DA1E71BB1200B016D6 /* MessagesViewController.h */,
 				4B2A46DB1E71BB1200B016D6 /* MessagesViewController.m */,
+				4B2A47001E73630200B016D6 /* UALBaseMessageViewController.h */,
+				4B2A47011E73630200B016D6 /* UALBaseMessageViewController.m */,
+				4B2A47031E73D5A300B016D6 /* UALFlightStatusMainViewController.h */,
+				4B2A47041E73D5A300B016D6 /* UALFlightStatusMainViewController.m */,
 				4B2A46DD1E71BB1200B016D6 /* MainInterface.storyboard */,
 				4B2A46E01E71BB1200B016D6 /* Assets.xcassets */,
 				4B2A46E21E71BB1200B016D6 /* Info.plist */,
@@ -214,7 +232,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B2A47021E73630300B016D6 /* UALBaseMessageViewController.m in Sources */,
 				4B2A46DC1E71BB1200B016D6 /* MessagesViewController.m in Sources */,
+				4B2A47051E73D5A300B016D6 /* UALFlightStatusMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +353,7 @@
 		4B2A46E61E71BB1300B016D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				DEVELOPMENT_TEAM = K69MGG379R;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
@@ -346,6 +367,7 @@
 		4B2A46E71E71BB1300B016D6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				DEVELOPMENT_TEAM = K69MGG379R;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
@@ -397,6 +419,7 @@
 				4B2A46E71E71BB1300B016D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4B2A46E91E71BB1300B016D6 /* Build configuration list for PBXNativeTarget "MySecond_iMessagesApp" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +428,7 @@
 				4B2A46EB1E71BB1300B016D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

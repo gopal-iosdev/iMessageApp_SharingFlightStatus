@@ -11,6 +11,10 @@
 
 @interface MessagesViewController ()
 
+@property (nonatomic, strong) UALBaseMessageViewController *baseMessageViewController;
+
+@property (nonatomic, strong) UALFlightStatusMainViewController *flightStatusController;
+
 @end
 
 @implementation MessagesViewController
@@ -26,6 +30,18 @@
 }
 
 #pragma mark - Conversation Handling
+
+-(void)willBecomeActiveWithConversation:(MSConversation *)conversation {
+    
+    [self presentViewControllerForconversation: conversation withPresentationStyle: self.presentationStyle];
+}
+
+-(void)willTransitionToPresentationStyle:(MSMessagesAppPresentationStyle)presentationStyle {
+    // Called before the extension transitions to a new presentation style.
+    
+    // Use this method to prepare for the change in presentation style.
+}
+
 
 -(void)didBecomeActiveWithConversation:(MSConversation *)conversation {
     // Called when the extension is about to move from the inactive to active state.
@@ -61,16 +77,127 @@
     // Use this to clean up state related to the deleted message.
 }
 
--(void)willTransitionToPresentationStyle:(MSMessagesAppPresentationStyle)presentationStyle {
-    // Called before the extension transitions to a new presentation style.
-    
-    // Use this method to prepare for the change in presentation style.
-}
 
 -(void)didTransitionToPresentationStyle:(MSMessagesAppPresentationStyle)presentationStyle {
     // Called after the extension transitions to a new presentation style.
     
     // Use this method to finalize any behaviors associated with the change in presentation style.
+    MSConversation *conversation = self.activeConversation? self.activeConversation: nil;
+    [self presentViewControllerForconversation: conversation withPresentationStyle: self.presentationStyle];
+}
+
+# pragma mark -
+
+- (void) presentViewControllerForconversation:(MSConversation *)conversation withPresentationStyle: (MSMessagesAppPresentationStyle)presentationStyle{
+    
+    for (UIView *childVw in self.messagesView.subviews) {
+        
+        [childVw removeFromSuperview];
+    }
+    
+    // Determine the controller to present.
+    UIViewController *controller = [UIViewController new];
+    
+    if (presentationStyle == MSMessagesAppPresentationStyleCompact) {
+        
+        controller = [self instantiateBaseMessageViewController];
+    }
+    else{
+        
+        controller = [self instantiateFlightStatusMainViewController];
+    }
+    
+    [self.messagesView addSubview: controller.view];
+    [self addChildViewController: controller];
+    [controller didMoveToParentViewController: self];
+    
+    controller.view.frame = CGRectMake(0, 0, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
+    
+    [self.navigationController presentViewController: controller animated: YES completion: nil];
+    
+    //what are we currently on?
+//    UIView *compactStyleView = [self instantiateBaseMessageViewController];;
+//    UIView *expandStyleView = [self instantiateFlightStatusMainViewController];
+//    
+//    if (presentationStyle == MSMessagesAppPresentationStyleCompact) {
+//        
+//        [self slideBottom: expandStyleView : compactStyleView];
+//    }
+//    else{
+//        
+//        [self slideTop: compactStyleView : expandStyleView];
+//    }
+    
+}
+
+- (void) slideTop: (UIView *)compactStyleView :(UIView *)expandStyleView
+{
+    //reset the frame X to the left of the screen
+    expandStyleView.frame = CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
+    expandStyleView.hidden = NO;
+    
+    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionTransitionNone
+                     animations:^{
+                         
+                         compactStyleView.frame = CGRectMake(-self.messagesView.frame.size.width, 0, self.messagesView.frame.size.width, self.view.frame.size.height);
+                        expandStyleView.frame = CGRectMake(0, 0, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
+                     }
+                     completion:^(BOOL finished) {
+                         if (finished){
+                             
+                             compactStyleView.hidden = YES;
+                         }
+                     }];
+}
+
+- (void) slideBottom: (UIView *)expandStyleView :(UIView *)compactStyleView
+{
+    //set the frame X to the right of the screen
+    compactStyleView.frame = CGRectMake(-self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
+    compactStyleView.hidden = NO;
+    
+    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionTransitionNone
+                     animations:^{
+                         
+                        compactStyleView.frame = CGRectMake(0, 0, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
+                         expandStyleView.frame = CGRectMake(self.messagesView.frame.size.width, 0, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
+                    }
+                     completion:^(BOOL finished) {
+                         if (finished) {
+                             
+                             expandStyleView.hidden = YES;
+                         }
+                     }];
+}
+
+
+- (UIViewController *)instantiateBaseMessageViewController{
+    
+    if (!self.baseMessageViewController) {
+        self.baseMessageViewController = (UALBaseMessageViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALBaseMessageViewController"];
+        
+        self.baseMessageViewController.delegate = self;
+        
+//        [self.messagesView addSubview: self.baseMessageViewController.view];
+//        [self addChildViewController: self.baseMessageViewController];
+//        [self.baseMessageViewController didMoveToParentViewController: self];
+    }
+    return self.baseMessageViewController;
+}
+
+- (UIViewController *)instantiateFlightStatusMainViewController{
+    
+    if (!self.flightStatusController) {
+        self.flightStatusController = (UALFlightStatusMainViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALFlightStatusMainViewController"];
+    }
+    return self.flightStatusController;
+}
+
+# pragma mark - 
+
+- (void)presentFlightStatusViewController{
+        
+    [self requestPresentationStyle: MSMessagesAppPresentationStyleExpanded];
 }
 
 @end
