@@ -98,6 +98,8 @@
     // Determine the controller to present.
     UIViewController *controller = [UIViewController new];
     
+//    controller = [self instantiateFlightStatusMainViewController];
+    
     if (presentationStyle == MSMessagesAppPresentationStyleCompact) {
         
         controller = [self instantiateBaseMessageViewController];
@@ -120,18 +122,14 @@
 
 - (UIViewController *)instantiateBaseMessageViewController{
     
-    if (!self.baseMessageViewController) {
-        self.baseMessageViewController = (UALBaseMessageViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALBaseMessageViewController"];
-        self.baseMessageViewController.delegate = self;
-    }
+    self.baseMessageViewController = (UALBaseMessageViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALBaseMessageViewController"];
+    self.baseMessageViewController.delegate = self;
     return self.baseMessageViewController;
 }
 
 - (UIViewController *)instantiateFlightStatusMainViewController{
     
-    if (!self.flightStatusController) {
-        self.flightStatusController = (UALFlightStatusMainViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALFlightStatusMainViewController"];
-    }
+    self.flightStatusController = (UALFlightStatusMainViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALFlightStatusMainViewController"];
     return self.flightStatusController;
 }
 

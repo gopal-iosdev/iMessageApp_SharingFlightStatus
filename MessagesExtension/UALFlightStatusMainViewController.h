@@ -11,6 +11,7 @@
 #import "UACFWSConnectionHandler.h"
 #import "MOBFlightStatusResponse.h"
 #import "UALFlightStatusViewController.h"
+#import "UALFlightStatusAdapter.h"
 
 @interface UALFlightStatusMainViewController : UIViewController
 

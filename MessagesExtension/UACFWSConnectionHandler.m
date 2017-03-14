@@ -37,11 +37,10 @@
     return self;
 }
 
-- (void) doNSURLSessionTask: (wsResponseCompletionHandler)handler{
+- (void) doNSURLSessionTask{
     
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
-    NSError *errorMain;
     
     _dataTask = [session dataTaskWithRequest:_request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         

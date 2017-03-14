@@ -59,6 +59,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *baggageClaimStatusLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *shareFlightStatusButton;
+
+
 @property (strong, retain) MOBFlightStatusSegment *flightStatusSegment;
 
 @end

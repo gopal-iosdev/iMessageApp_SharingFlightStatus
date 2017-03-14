@@ -33,6 +33,6 @@
 
 - (id)initWithRequest:(NSURLRequest *)request completionHandler:(wsResponseCompletionHandler)handler;
 
-- (void) doNSURLSessionTask: (wsResponseCompletionHandler)handler;
+- (void) doNSURLSessionTask;
 
 @end

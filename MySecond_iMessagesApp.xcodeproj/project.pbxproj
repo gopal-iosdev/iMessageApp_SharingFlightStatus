@@ -32,6 +32,7 @@
 		4B4F587B1E7769B500E02400 /* MOBAirport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58641E764CB300E02400 /* MOBAirport.m */; };
 		4B4F587C1E7769E900E02400 /* MOBAirportAdvisoryMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58551E764B1E00E02400 /* MOBAirportAdvisoryMessage.m */; };
 		4B4F587F1E777A4700E02400 /* UALFlightStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F587E1E777A4700E02400 /* UALFlightStatusViewController.m */; };
+		4B4F58821E77B9B100E02400 /* UALFlightStatusAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58811E77B9B100E02400 /* UALFlightStatusAdapter.m */; };
 		56C661549B09FE1F80EE68B7 /* libPods-MySecond_iMessagesApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E293A202DB7130469A3AF3F0 /* libPods-MySecond_iMessagesApp.a */; };
 		BA879D22DCCD37AE3A74FC07 /* libPods-MessagesExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E947B4BE04CA052F0D13C8 /* libPods-MessagesExtension.a */; };
 /* End PBXBuildFile section */
@@ -109,6 +110,8 @@
 		4B4F586D1E764D7B00E02400 /* MOBFlightStatusResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBFlightStatusResponse.m; sourceTree = "<group>"; };
 		4B4F587D1E777A4700E02400 /* UALFlightStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UALFlightStatusViewController.h; sourceTree = "<group>"; };
 		4B4F587E1E777A4700E02400 /* UALFlightStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UALFlightStatusViewController.m; sourceTree = "<group>"; };
+		4B4F58801E77B9B100E02400 /* UALFlightStatusAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UALFlightStatusAdapter.h; sourceTree = "<group>"; };
+		4B4F58811E77B9B100E02400 /* UALFlightStatusAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UALFlightStatusAdapter.m; sourceTree = "<group>"; };
 		5B04DE110C265B663E239E36 /* Pods-MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesExtension/Pods-MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		A03B3A782B77F3D6F81704DD /* Pods-MySecond_iMessagesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecond_iMessagesApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MySecond_iMessagesApp/Pods-MySecond_iMessagesApp.release.xcconfig"; sourceTree = "<group>"; };
 		E293A202DB7130469A3AF3F0 /* libPods-MySecond_iMessagesApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MySecond_iMessagesApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +191,7 @@
 				4B2A46E21E71BB1200B016D6 /* Info.plist */,
 				4B4F583A1E76285B00E02400 /* WebService  */,
 				4B4F58411E763ED800E02400 /* Models */,
+				4B4F58831E77B9BC00E02400 /* WebService Adapters */,
 			);
 			path = MessagesExtension;
 			sourceTree = "<group>";
@@ -247,6 +251,15 @@
 				4B4F586D1E764D7B00E02400 /* MOBFlightStatusResponse.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		4B4F58831E77B9BC00E02400 /* WebService Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				4B4F58801E77B9B100E02400 /* UALFlightStatusAdapter.h */,
+				4B4F58811E77B9B100E02400 /* UALFlightStatusAdapter.m */,
+			);
+			name = "WebService Adapters";
 			sourceTree = "<group>";
 		};
 		93D833765727A7C5A3FEBFAD /* Pods */ = {
@@ -460,6 +473,7 @@
 				4B4F58681E764CDA00E02400 /* MOBFlightSegment.m in Sources */,
 				4B4F586B1E764D1100E02400 /* MOBBaggage.m in Sources */,
 				4B4F587F1E777A4700E02400 /* UALFlightStatusViewController.m in Sources */,
+				4B4F58821E77B9B100E02400 /* UALFlightStatusAdapter.m in Sources */,
 				4B2A47051E73D5A300B016D6 /* UALFlightStatusMainViewController.m in Sources */,
 				4B4F58391E76285000E02400 /* UACFWSConnectionHandler.m in Sources */,
 				4B4F585C1E764C0600E02400 /* MOBEquipment.m in Sources */,
