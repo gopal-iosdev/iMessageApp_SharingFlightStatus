@@ -29,14 +29,8 @@
     
     //
     
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    NSLocale *timeLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [df setLocale:timeLocale];
-    [df setDateFormat:@"MM/dd/yyyy hh:mma"];
-    NSDate *flightDt = [df dateFromString: self.flightStatusSegment.scheduledDepartureDateTime];
-    //[df setDateFormat:@"MMM dd, yyyy"];
-    [df setDateFormat:@"EEE., MMM d, yyyy"];
-    NSString *flightDate = [df stringFromDate:flightDt];
+    
+    NSString *flightDate = [UALFlightStatusViewController getWordFormatStringDatefrom: self.flightStatusSegment.scheduledDepartureDateTime];
     
     NSString *origin = @"";
     NSString *destination = @"";
@@ -87,11 +81,11 @@
     
     [dateFormatter setDateFormat:@"h:mma"];
     
-    self.flightDepartureTimeLabel.text = [dateFormatter stringFromDate:departureDate];
-    self.flightArrivalTimeLabel.text = [dateFormatter stringFromDate:arrivalDate];
+    self.flightDepartureTimeLabel.text = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: self.flightStatusSegment.scheduledDepartureDateTime withFormat: @"h:mma"];//[dateFormatter stringFromDate:departureDate];
+    self.flightArrivalTimeLabel.text = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: self.flightStatusSegment.scheduledArrivalDateTime withFormat: @"h:mma"];;//[dateFormatter stringFromDate:arrivalDate];
     
     [dateFormatter setDateFormat:@"(MMM d)"];
-    NSString *offsetDate = [dateFormatter stringFromDate:arrivalDate];
+    NSString *offsetDate = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: self.flightStatusSegment.scheduledArrivalDateTime withFormat: @"(MMM d)"];//[dateFormatter stringFromDate:arrivalDate];
     
     NSDate *departDtWithoutTime = [self dateWithOutTime:departureDate];
     NSDate *arriveDtWithoutTime = [self dateWithOutTime:arrivalDate];
@@ -311,9 +305,46 @@
     return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
++ (NSString *)getWordFormatStringDatefrom: (NSString *)numberDate{
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    NSLocale *timeLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [df setLocale:timeLocale];
+    [df setDateFormat:@"MM/dd/yyyy hh:mma"];
+    NSDate *flightDt = [df dateFromString: numberDate];
+    [df setDateFormat:@"EEE., MMM d, yyyy"];
+    NSString *flightDate = [df stringFromDate:flightDt];
+    return flightDate;
+}
+
++ (NSString *)getHourlyOrMonthlyFormatNumberTimeFromDate: (NSString *)dateString withFormat: (NSString *)timeFormat{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setAMSymbol:@"am"];
+    [dateFormatter setPMSymbol:@"pm"];
+    
+    NSLocale *timeLocale2 = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [dateFormatter setLocale:timeLocale2];
+    
+    [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mma"];
+    NSDate *dateObj = [dateFormatter dateFromString: dateString];
+    [dateFormatter setDateFormat: timeFormat];
+    return [dateFormatter stringFromDate: dateObj];
+}
+
++ (NSDate *)getNSDateFromString: (NSString *)dateString withFormat: (NSString *)dateFormat{
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    NSLocale *timeLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [df setLocale:timeLocale];
+    [df setDateFormat: dateFormat];
+    NSDate *dateObj = [df dateFromString: dateString];
+    return dateObj;
+}
+
 - (IBAction)shareFlightStatusButtonClicked:(UIButton *)sender {
     
-    
+    [self.delegate composeMessageWithMOBFlightStatusSegment: self.flightStatusSegment];
 }
 
 

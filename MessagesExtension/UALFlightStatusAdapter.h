@@ -17,6 +17,8 @@
 
 - (void)getFlightStatus:(NSString *)flightNumber forFlightDate:(NSString *)flightDate forOrigin:(NSString *)origin :(wsResponseCompletionHandler)handler;
 
+- (NSURL *)getFlightStatusURL:(NSString *)flightNumber forFlightDate:(NSString *)flightDate forOrigin:(NSString *)origin;
+
 @property (nonatomic, copy) wsResponseCompletionHandler CompletionHandler;
 
 @end

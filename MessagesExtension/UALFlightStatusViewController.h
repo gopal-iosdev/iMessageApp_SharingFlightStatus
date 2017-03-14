@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "MOBFlightStatusSegment.h"
 
+@protocol UALFlightStatusViewControllerDelegate <NSObject>
+
+@optional
+
+- (void)composeMessageWithMOBFlightStatusSegment: (MOBFlightStatusSegment *)flightStatusSegment;
+
+@end
+
 @interface UALFlightStatusViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *flightNumAndDepartDateLabel;
@@ -63,5 +71,13 @@
 
 
 @property (strong, retain) MOBFlightStatusSegment *flightStatusSegment;
+
+@property (weak, nonatomic) NSObject<UALFlightStatusViewControllerDelegate> *delegate;
+
++ (NSString *)getWordFormatStringDatefrom: (NSString *)numberDate;
+
++ (NSString *)getHourlyOrMonthlyFormatNumberTimeFromDate: (NSString *)dateString withFormat: (NSString *)timeFormat;
+
++ (NSDate *)getNSDateFromString: (NSString *)dateString withFormat: (NSString *)dateFormat;
 
 @end

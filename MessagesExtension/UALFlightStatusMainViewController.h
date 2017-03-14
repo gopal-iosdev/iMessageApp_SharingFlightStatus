@@ -19,9 +19,11 @@
 
 - (void)expandFlightStatusMainViewController: (UITextField *)textField;
 
+- (void)composeMessageWithFlightStatusSegment: (MOBFlightStatusSegment *)flightStatusSegment;
+
 @end
 
-@interface UALFlightStatusMainViewController : UIViewController<UITextFieldDelegate>
+@interface UALFlightStatusMainViewController : UIViewController<UITextFieldDelegate, UALFlightStatusViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *flightNumberSearchTitleLabel;
 

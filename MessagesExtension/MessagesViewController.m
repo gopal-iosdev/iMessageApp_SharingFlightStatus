@@ -92,6 +92,9 @@
     
     for (UIView *childVw in self.messagesView.subviews) {
         
+        for (UIView *childSubVw in childVw.subviews) {
+            [childSubVw removeFromSuperview];
+        }
         [childVw removeFromSuperview];
     }
     
@@ -135,6 +138,49 @@
     return self.flightStatusController;
 }
 
+# pragma mark - Send Or Insert Message
+
+- (void)sendOrInsertMessage: (MOBFlightStatusSegment *)flightStatusSegment{
+    
+    MSMessage *message = [[MSMessage alloc] init];
+    
+    MSMessageTemplateLayout *messageLayout = [[MSMessageTemplateLayout alloc]init];
+    
+    NSString *flightDate = [UALFlightStatusViewController getWordFormatStringDatefrom: flightStatusSegment.scheduledDepartureDateTime];
+    messageLayout.imageTitle = [NSString stringWithFormat:@"%@%@ / %@", @"UA", flightStatusSegment.flightNumber, flightDate];
+    
+    NSString *origin = flightStatusSegment.departure.city? flightStatusSegment.departure.city: flightStatusSegment.departure.code;
+    NSString *destination = flightStatusSegment.arrival.city? flightStatusSegment.arrival.city: flightStatusSegment.arrival.code;;
+    messageLayout.imageSubtitle = [NSString stringWithFormat:@"%@ to %@", origin, destination];
+    
+    messageLayout.caption = flightStatusSegment.departure.code;
+    messageLayout.subcaption = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: flightStatusSegment.scheduledDepartureDateTime withFormat: @"h:mma"];
+    
+    messageLayout.trailingCaption = flightStatusSegment.arrival.code;
+    NSString *arrivalTime = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: flightStatusSegment.scheduledArrivalDateTime withFormat: @"h:mma"];
+    NSString *arrivalDay = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: flightStatusSegment.scheduledArrivalDateTime withFormat: @"(MMM d)"];
+    messageLayout.trailingSubcaption = [NSString stringWithFormat: @"%@%@", arrivalTime, arrivalDay];
+    
+    messageLayout.image = [UIImage imageNamed: @"United_Plane.png"];
+    
+    NSURL *flightStatusUrl = [self composeNavigationUrlForFlightStatusSegment: flightStatusSegment];
+    
+    message.URL = flightStatusUrl;
+    message.layout = messageLayout;
+    [self.activeConversation insertMessage: message completionHandler: nil];
+    [self dismiss];
+    
+
+//    NSData *dataImage = UIImageJPEGRepresentation([self imageWithView:self.myViewBgImageConLogoDaSalvare], 0.0);
+//    [dataImage writeToURL:urlImage atomically:true];
+//    
+//    [savedConversation insertAttachment:urlImage withAlternateFilename:nil completionHandler:^(NSError * error) {
+//        
+//    }];
+
+    //[self.activeConversation insertMessage:<#(nonnull MSMessage *)#> completionHandler:<#^(NSError * _Nullable)completionHandler#>]
+}
+
 # pragma mark - Delegate Methods
 
 - (void)presentFlightStatusViewController{
@@ -147,8 +193,42 @@
     [self requestPresentationStyle: MSMessagesAppPresentationStyleExpanded];
 }
 
+# pragma mark Compose Message
+
+- (void)composeMessageWithFlightStatusSegment: (MOBFlightStatusSegment *)flightStatusSegment{
+    
+    [self sendOrInsertMessage: flightStatusSegment];
+}
+
+
+
 # pragma mark - All Helper Methods
 
+- (NSURL *)composeNavigationUrlForFlightStatusSegment: (MOBFlightStatusSegment *)flightStatusSegment{
+    
+    NSString *testurlString = @"https://mobile.united.com/FlightStatus/FlightDetails?carrierCode=UA&flightNumber=83&flightDate=03%2F14%2F2017%2000%3A00%3A00&origin=BOM&destination=EWR&GUID=9cb46164-a8f8-4148-b818-eef1ee36825a";//https://mobile.united.com/FlightDetails?carrierCode=UA&flightNumber=887&flightDate=03/14/2017&origin=YVR&destination=SFO&GUID=9cb46164-a8f8-4148-b818-eef1ee36825a
+    
+    NSString *flightNumber = flightStatusSegment.flightNumber;
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    NSLocale *timeLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [df setLocale:timeLocale];
+    [df setDateFormat:@"MM/dd/yyyy hh:mma"];
+    NSDate *flightDt = [df dateFromString: flightStatusSegment.scheduledDepartureDateTime];
+    [df setDateFormat:@"MM/dd/yyyy"];
+    NSString *flightDate = [df stringFromDate:flightDt];
+    
+    NSString* origin = flightStatusSegment.departure.code;
+    NSString* destination = flightStatusSegment.arrival.code;
+    
+    NSString *gUID = @"9cb46164-a8f8-4148-b818-eef1ee36825a";
+    
+    NSString *urlString = [[NSString stringWithFormat:@"/FlightDetails?carrierCode=UA&flightNumber=%@&flightDate=%@&origin=%@&destination=%@&GUID=%@", flightNumber, flightDate, origin, destination, gUID] stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding];
+    
+    NSString *baseURL = [@"https://mobile.united.com" stringByAppendingString: urlString];
+    NSURL *url = [NSURL URLWithString: baseURL];
+    return url;
 
+}
 
 @end

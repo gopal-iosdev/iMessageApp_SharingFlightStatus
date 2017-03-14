@@ -140,13 +140,23 @@ NSString *requestString;
     [self addChildViewController: self.flightStatusViewController];
     [self.flightStatusViewController didMoveToParentViewController: self];
     self.flightStatusViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.flightStatusViewController.delegate = self;
     [self.navigationController presentViewController: self.flightStatusViewController animated: YES completion: nil];
 }
 
-# pragma mark - UITextField Delegate Methods
+# pragma mark - All Delegate Methods
+
+# pragma mark UITextField Delegate Methods
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     //[self.delegate expandFlightStatusMainViewController: textField];
+}
+
+# pragma mark - UALFlightStatusViewControllerDelegate
+
+- (void)composeMessageWithMOBFlightStatusSegment: (MOBFlightStatusSegment *)flightStatusSegment{
+    
+     [self.delegate composeMessageWithFlightStatusSegment: flightStatusSegment];
 }
 
 

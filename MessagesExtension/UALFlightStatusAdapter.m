@@ -33,15 +33,8 @@ static UALFlightStatusAdapter *gInstance = NULL;
 - (void)getFlightStatus:(NSString *)flightNumber forFlightDate:(NSString *)flightDate forOrigin:(NSString *)origin :(wsResponseCompletionHandler)handler{
     
     self.CompletionHandler = handler;
-    NSString *transactionId = @"9A37EFB9-2C61-4440-8C46-B57CA65EE77A|5A6A3E09-F7BA-402F-AE72-2B90BC8A5971";
-    NSString *culture = @"en-US";
-    NSString* versionNumber = @"2.1.19I";
     
-    NSString *urlString = [[NSString stringWithFormat:@"/FlightStatus/GetFlightStatus?applicationId=1&appversion=%@&accesscode=%@&transactionid=%@&flightnumber=%@&flightdate=%@&origin=%@&languagecode=%@", versionNumber, @"ACCESSCODE", transactionId, flightNumber, flightDate, origin, culture] stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding];
-    
-    NSString *baseURL = [@"https://mobile-test.united.com/RESTDEV/api" stringByAppendingString: urlString];
-    
-    NSURL *url = [NSURL URLWithString: baseURL];
+    NSURL *url = [self getFlightStatusURL: flightNumber forFlightDate: flightDate forOrigin: origin];
     NSURLRequest *request = nil;
     
     NSTimeInterval timeoutTimeInterval = (NSTimeInterval)180;
@@ -49,6 +42,18 @@ static UALFlightStatusAdapter *gInstance = NULL;
     
     UACFWSConnectionHandler *wsConnHandler = [[UACFWSConnectionHandler alloc] initWithRequest:request completionHandler:handler];
     [wsConnHandler doNSURLSessionTask];
+}
+
+- (NSURL *)getFlightStatusURL:(NSString *)flightNumber forFlightDate:(NSString *)flightDate forOrigin:(NSString *)origin{
+    
+    NSString *transactionId = @"9A37EFB9-2C61-4440-8C46-B57CA65EE77A|5A6A3E09-F7BA-402F-AE72-2B90BC8A5971";
+    NSString *culture = @"en-US";
+    NSString* versionNumber = @"2.1.19I";
+    NSString *urlString = [[NSString stringWithFormat:@"/FlightStatus/GetFlightStatus?applicationId=1&appversion=%@&accesscode=%@&transactionid=%@&flightnumber=%@&flightdate=%@&origin=%@&languagecode=%@", versionNumber, @"ACCESSCODE", transactionId, flightNumber, flightDate, origin, culture] stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding];
+    
+    NSString *baseURL = [@"https://mobile-test.united.com/RESTDEV/api" stringByAppendingString: urlString];
+    NSURL *url = [NSURL URLWithString: baseURL];
+    return url;
 }
 
 @end

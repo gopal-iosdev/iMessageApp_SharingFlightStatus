@@ -562,8 +562,7 @@
                                                         </constraints>
                                                         <state key="normal" title="Share Flight Status"/>
                                                         <connections>
-                                                            <action selector="shareFlightStatusButtonClicked:" destination="fvw-gI-9Jo" eventType="touchUpInside" id="JIw-TD-Af5"/>
-                                                            <action selector="shareFlightStatusButtonPressed:" destination="dRH-JN-516" eventType="touchUpInside" id="hgm-Kp-NiU"/>
+                                                            <action selector="shareFlightStatusButtonClicked:" destination="fvw-gI-9Jo" eventType="touchUpInside" id="HGA-lT-M36"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -681,7 +680,7 @@
                         <outlet property="lblDateOffsetEstimatedOrActualWidthConstraint" destination="ddh-5l-Lch" id="uuS-BW-Llt"/>
                         <outlet property="lblScheduleDepartureName" destination="Rdc-cs-pEi" id="YsQ-Uz-nya"/>
                         <outlet property="lblScheduledArrivalName" destination="bLB-Gy-D5f" id="Rdt-69-wr3"/>
-                        <outlet property="shareFlightStatusButton" destination="3TT-Fb-G1Y" id="xBh-zY-6Yw"/>
+                        <outlet property="shareFlightStatusButton" destination="3TT-Fb-G1Y" id="W8o-jj-mbn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sck-aa-ywD" userLabel="First Responder" sceneMemberID="firstResponder"/>
