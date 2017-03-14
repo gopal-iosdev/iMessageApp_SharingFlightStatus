@@ -10,8 +10,15 @@
 #import "UACFWSResponse.h"
 #import "UACFWSConnectionHandler.h"
 #import "MOBFlightStatusResponse.h"
+#import "UALFlightStatusViewController.h"
 
 @interface UALFlightStatusMainViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UILabel *flightNumberSearchTitleLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *flightNumberSearchTitleLabelHeightConstraint;
+
+
 
 @property (weak, nonatomic) IBOutlet UITextField *flightNumberTextField;
 

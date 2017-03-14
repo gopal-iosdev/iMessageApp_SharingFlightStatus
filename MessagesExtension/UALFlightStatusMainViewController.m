@@ -12,6 +12,7 @@
 
 @property (nonatomic,retain) NSDate *FlightDate;
 @property (nonatomic, copy) wsResponseCompletionHandler CompletionHandler;
+@property (nonatomic, strong) UALFlightStatusViewController *flightStatusViewController;
 
 @end
 
@@ -22,6 +23,7 @@ NSString *requestString;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.flightNumberSearchTitleLabelHeightConstraint.constant = 44.0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,8 +105,6 @@ NSString *requestString;
     
     if (response.Error == nil){
         
-//        NSData *jsonData = [response.Result dataUsingEncoding:NSUTF8StringEncoding];;
-        //NSString *jsonString = [[NSString alloc] initWithData: response.Result encoding:NSUTF8StringEncoding];;
         NSString *jsonString = (NSString *)response.Result;
         NSError *err = nil;
         MOBFlightStatusResponse *flightStatusResponse = [[MOBFlightStatusResponse alloc] initWithString:jsonString error:&err];
@@ -135,6 +135,7 @@ NSString *requestString;
                     lastUpdated = [NSDate date];
                     NSTimeInterval timeInterval48Hours = 36 * 60 * 60;
                     expiryDate = [scheduledDeparture dateByAddingTimeInterval:timeInterval48Hours];
+                    [self presentFlightStatusViewControllerWithResponse: [flightStatusResponse.flightStatusInfo.segments objectAtIndex: 0]];
                     
                 }else{
                     
@@ -146,6 +147,10 @@ NSString *requestString;
                 NSString *errorMessage = exception.message;
                 [self showAlertViewWithTitle: @"United Airlines" message:errorMessage];
             }
+        }
+        else{
+            
+            [self showAlertViewWithTitle: @"United Airlines" message: err.localizedDescription];
         }
     }
 }
@@ -159,6 +164,22 @@ NSString *requestString;
     }];
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+# pragma mark - Present Flight Status View Controller
+
+- (void)presentFlightStatusViewControllerWithResponse: (MOBFlightStatusSegment *)flightStatusSegment{
+    
+    if (!self.flightStatusViewController) {
+        self.flightStatusViewController = (UALFlightStatusViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALFlightStatusViewController"];
+    }
+    self.flightNumberSearchTitleLabelHeightConstraint.constant = 0;
+    self.flightStatusViewController.flightStatusSegment = flightStatusSegment;
+    [self.view addSubview: self.flightStatusViewController.view];
+    [self addChildViewController: self.flightStatusViewController];
+    [self.flightStatusViewController didMoveToParentViewController: self];
+    self.flightStatusViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    [self.navigationController presentViewController: self.flightStatusViewController animated: YES completion: nil];
 }
 
 @end
