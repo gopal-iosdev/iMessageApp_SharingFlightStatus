@@ -23,6 +23,13 @@ NSString *requestString;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.flightNumberSearchTitleLabelHeightConstraint.constant = 44.0;
+    self.flightNumberTextField.delegate = self;
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear: animated];
+    //[self.flightNumberTextField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,5 +142,12 @@ NSString *requestString;
     self.flightStatusViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [self.navigationController presentViewController: self.flightStatusViewController animated: YES completion: nil];
 }
+
+# pragma mark - UITextField Delegate Methods
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    //[self.delegate expandFlightStatusMainViewController: textField];
+}
+
 
 @end

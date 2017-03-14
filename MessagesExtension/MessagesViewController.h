@@ -11,7 +11,7 @@
 #import "UALFlightStatusMainViewController.h"
 #import <UIKit/UIKit.h>
 
-@interface MessagesViewController : MSMessagesAppViewController<UALBaseMessageViewControllerDelegate, UIAlertViewDelegate>
+@interface MessagesViewController : MSMessagesAppViewController<UALBaseMessageViewControllerDelegate, UALFlightStatusMainViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *messagesView;
 

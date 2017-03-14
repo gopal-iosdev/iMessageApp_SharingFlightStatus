@@ -13,7 +13,15 @@
 #import "UALFlightStatusViewController.h"
 #import "UALFlightStatusAdapter.h"
 
-@interface UALFlightStatusMainViewController : UIViewController
+@protocol UALFlightStatusMainViewControllerDelegate <NSObject>
+
+@optional
+
+- (void)expandFlightStatusMainViewController: (UITextField *)textField;
+
+@end
+
+@interface UALFlightStatusMainViewController : UIViewController<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *flightNumberSearchTitleLabel;
 
@@ -26,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *flightDepartDatePickerView;
 
 @property (weak, nonatomic) IBOutlet UIButton *searchFlightStatusButton;
+
+@property (weak, nonatomic) NSObject<UALFlightStatusMainViewControllerDelegate> *delegate;
 
 
 @end

@@ -98,7 +98,8 @@
     // Determine the controller to present.
     UIViewController *controller = [UIViewController new];
     
-//    controller = [self instantiateFlightStatusMainViewController];
+    //controller = [self instantiateFlightStatusMainViewController];
+    
     
     if (presentationStyle == MSMessagesAppPresentationStyleCompact) {
         
@@ -130,6 +131,7 @@
 - (UIViewController *)instantiateFlightStatusMainViewController{
     
     self.flightStatusController = (UALFlightStatusMainViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALFlightStatusMainViewController"];
+    self.flightStatusController.delegate = self;
     return self.flightStatusController;
 }
 
@@ -139,5 +141,14 @@
         
     [self requestPresentationStyle: MSMessagesAppPresentationStyleExpanded];
 }
+
+- (void)expandFlightStatusMainViewController: (UITextField *)textField{
+    
+    [self requestPresentationStyle: MSMessagesAppPresentationStyleExpanded];
+}
+
+# pragma mark - All Helper Methods
+
+
 
 @end
