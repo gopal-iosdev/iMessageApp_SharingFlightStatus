@@ -17,6 +17,22 @@
 		4B2A47051E73D5A300B016D6 /* UALFlightStatusMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2A47041E73D5A300B016D6 /* UALFlightStatusMainViewController.m */; };
 		4B4F582F1E74BF0A00E02400 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4F582E1E74BF0A00E02400 /* UIKit.framework */; };
 		4B4F58311E75FE5400E02400 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4F58301E75FE5400E02400 /* WebKit.framework */; };
+		4B4F58391E76285000E02400 /* UACFWSConnectionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58381E76285000E02400 /* UACFWSConnectionHandler.m */; };
+		4B4F583D1E762D6000E02400 /* UACFWSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F583C1E762D6000E02400 /* UACFWSResponse.m */; };
+		4B4F584D1E764A2000E02400 /* MOBException.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F584C1E764A2000E02400 /* MOBException.m */; };
+		4B4F58501E764A9200E02400 /* MOBFlightStatusInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F584F1E764A9200E02400 /* MOBFlightStatusInfo.m */; };
+		4B4F58591E764BCB00E02400 /* MOBFlightStatusSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58581E764BCB00E02400 /* MOBFlightStatusSegment.m */; };
+		4B4F585C1E764C0600E02400 /* MOBEquipment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F585B1E764C0600E02400 /* MOBEquipment.m */; };
+		4B4F585F1E764C2600E02400 /* MOBAircraft.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F585E1E764C2600E02400 /* MOBAircraft.m */; };
+		4B4F58621E764C7900E02400 /* MOBAirline.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58611E764C7900E02400 /* MOBAirline.m */; };
+		4B4F58681E764CDA00E02400 /* MOBFlightSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58671E764CDA00E02400 /* MOBFlightSegment.m */; };
+		4B4F586B1E764D1100E02400 /* MOBBaggage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F586A1E764D1100E02400 /* MOBBaggage.m */; };
+		4B4F586E1E764D7B00E02400 /* MOBFlightStatusResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F586D1E764D7B00E02400 /* MOBFlightStatusResponse.m */; };
+		4B4F587A1E7769A500E02400 /* MOBTypeOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58521E764ADD00E02400 /* MOBTypeOption.m */; };
+		4B4F587B1E7769B500E02400 /* MOBAirport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58641E764CB300E02400 /* MOBAirport.m */; };
+		4B4F587C1E7769E900E02400 /* MOBAirportAdvisoryMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58551E764B1E00E02400 /* MOBAirportAdvisoryMessage.m */; };
+		56C661549B09FE1F80EE68B7 /* libPods-MySecond_iMessagesApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E293A202DB7130469A3AF3F0 /* libPods-MySecond_iMessagesApp.a */; };
+		BA879D22DCCD37AE3A74FC07 /* libPods-MessagesExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E947B4BE04CA052F0D13C8 /* libPods-MessagesExtension.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +60,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00A5ED6B1CCE6119D8FDA756 /* Pods-MySecond_iMessagesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecond_iMessagesApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MySecond_iMessagesApp/Pods-MySecond_iMessagesApp.debug.xcconfig"; sourceTree = "<group>"; };
+		085F8FD8ADB7CECCE2EF7C06 /* Pods-MessagesExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesExtension/Pods-MessagesExtension.release.xcconfig"; sourceTree = "<group>"; };
 		4B2A46C81E71BB1200B016D6 /* MySecond_iMessagesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySecond_iMessagesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2A46CB1E71BB1200B016D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B2A46CD1E71BB1200B016D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,9 +78,49 @@
 		4B2A47041E73D5A300B016D6 /* UALFlightStatusMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UALFlightStatusMainViewController.m; sourceTree = "<group>"; };
 		4B4F582E1E74BF0A00E02400 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4B4F58301E75FE5400E02400 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		4B4F58371E76285000E02400 /* UACFWSConnectionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UACFWSConnectionHandler.h; sourceTree = "<group>"; };
+		4B4F58381E76285000E02400 /* UACFWSConnectionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UACFWSConnectionHandler.m; sourceTree = "<group>"; };
+		4B4F583B1E762D6000E02400 /* UACFWSResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UACFWSResponse.h; sourceTree = "<group>"; };
+		4B4F583C1E762D6000E02400 /* UACFWSResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UACFWSResponse.m; sourceTree = "<group>"; };
+		4B4F584B1E764A2000E02400 /* MOBException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBException.h; sourceTree = "<group>"; };
+		4B4F584C1E764A2000E02400 /* MOBException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBException.m; sourceTree = "<group>"; };
+		4B4F584E1E764A9200E02400 /* MOBFlightStatusInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBFlightStatusInfo.h; sourceTree = "<group>"; };
+		4B4F584F1E764A9200E02400 /* MOBFlightStatusInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBFlightStatusInfo.m; sourceTree = "<group>"; };
+		4B4F58511E764ADD00E02400 /* MOBTypeOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBTypeOption.h; sourceTree = "<group>"; };
+		4B4F58521E764ADD00E02400 /* MOBTypeOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBTypeOption.m; sourceTree = "<group>"; };
+		4B4F58541E764B1E00E02400 /* MOBAirportAdvisoryMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBAirportAdvisoryMessage.h; sourceTree = "<group>"; };
+		4B4F58551E764B1E00E02400 /* MOBAirportAdvisoryMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBAirportAdvisoryMessage.m; sourceTree = "<group>"; };
+		4B4F58571E764BCB00E02400 /* MOBFlightStatusSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBFlightStatusSegment.h; sourceTree = "<group>"; };
+		4B4F58581E764BCB00E02400 /* MOBFlightStatusSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBFlightStatusSegment.m; sourceTree = "<group>"; };
+		4B4F585A1E764C0600E02400 /* MOBEquipment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBEquipment.h; sourceTree = "<group>"; };
+		4B4F585B1E764C0600E02400 /* MOBEquipment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBEquipment.m; sourceTree = "<group>"; };
+		4B4F585D1E764C2600E02400 /* MOBAircraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBAircraft.h; sourceTree = "<group>"; };
+		4B4F585E1E764C2600E02400 /* MOBAircraft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBAircraft.m; sourceTree = "<group>"; };
+		4B4F58601E764C7900E02400 /* MOBAirline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBAirline.h; sourceTree = "<group>"; };
+		4B4F58611E764C7900E02400 /* MOBAirline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBAirline.m; sourceTree = "<group>"; };
+		4B4F58631E764CB300E02400 /* MOBAirport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBAirport.h; sourceTree = "<group>"; };
+		4B4F58641E764CB300E02400 /* MOBAirport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBAirport.m; sourceTree = "<group>"; };
+		4B4F58661E764CDA00E02400 /* MOBFlightSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBFlightSegment.h; sourceTree = "<group>"; };
+		4B4F58671E764CDA00E02400 /* MOBFlightSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBFlightSegment.m; sourceTree = "<group>"; };
+		4B4F58691E764D1100E02400 /* MOBBaggage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBBaggage.h; sourceTree = "<group>"; };
+		4B4F586A1E764D1100E02400 /* MOBBaggage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBBaggage.m; sourceTree = "<group>"; };
+		4B4F586C1E764D7B00E02400 /* MOBFlightStatusResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBFlightStatusResponse.h; sourceTree = "<group>"; };
+		4B4F586D1E764D7B00E02400 /* MOBFlightStatusResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBFlightStatusResponse.m; sourceTree = "<group>"; };
+		5B04DE110C265B663E239E36 /* Pods-MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesExtension/Pods-MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		A03B3A782B77F3D6F81704DD /* Pods-MySecond_iMessagesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecond_iMessagesApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MySecond_iMessagesApp/Pods-MySecond_iMessagesApp.release.xcconfig"; sourceTree = "<group>"; };
+		E293A202DB7130469A3AF3F0 /* libPods-MySecond_iMessagesApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MySecond_iMessagesApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4E947B4BE04CA052F0D13C8 /* libPods-MessagesExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MessagesExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4940EC8EBF12A734AB8C0D47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56C661549B09FE1F80EE68B7 /* libPods-MySecond_iMessagesApp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B2A46CF1E71BB1200B016D6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -70,6 +128,7 @@
 				4B4F58311E75FE5400E02400 /* WebKit.framework in Frameworks */,
 				4B4F582F1E74BF0A00E02400 /* UIKit.framework in Frameworks */,
 				4B2A46D81E71BB1200B016D6 /* Messages.framework in Frameworks */,
+				BA879D22DCCD37AE3A74FC07 /* libPods-MessagesExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +142,7 @@
 				4B2A46D91E71BB1200B016D6 /* MessagesExtension */,
 				4B2A46D61E71BB1200B016D6 /* Frameworks */,
 				4B2A46C91E71BB1200B016D6 /* Products */,
+				93D833765727A7C5A3FEBFAD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,11 +170,26 @@
 				4B4F58301E75FE5400E02400 /* WebKit.framework */,
 				4B4F582E1E74BF0A00E02400 /* UIKit.framework */,
 				4B2A46D71E71BB1200B016D6 /* Messages.framework */,
+				F4E947B4BE04CA052F0D13C8 /* libPods-MessagesExtension.a */,
+				E293A202DB7130469A3AF3F0 /* libPods-MySecond_iMessagesApp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		4B2A46D91E71BB1200B016D6 /* MessagesExtension */ = {
+			isa = PBXGroup;
+			children = (
+				4B4F58361E7627EF00E02400 /* View Controllers */,
+				4B2A46DD1E71BB1200B016D6 /* MainInterface.storyboard */,
+				4B2A46E01E71BB1200B016D6 /* Assets.xcassets */,
+				4B2A46E21E71BB1200B016D6 /* Info.plist */,
+				4B4F583A1E76285B00E02400 /* WebService  */,
+				4B4F58411E763ED800E02400 /* Models */,
+			);
+			path = MessagesExtension;
+			sourceTree = "<group>";
+		};
+		4B4F58361E7627EF00E02400 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				4B2A46DA1E71BB1200B016D6 /* MessagesViewController.h */,
@@ -123,11 +198,61 @@
 				4B2A47011E73630200B016D6 /* UALBaseMessageViewController.m */,
 				4B2A47031E73D5A300B016D6 /* UALFlightStatusMainViewController.h */,
 				4B2A47041E73D5A300B016D6 /* UALFlightStatusMainViewController.m */,
-				4B2A46DD1E71BB1200B016D6 /* MainInterface.storyboard */,
-				4B2A46E01E71BB1200B016D6 /* Assets.xcassets */,
-				4B2A46E21E71BB1200B016D6 /* Info.plist */,
 			);
-			path = MessagesExtension;
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		4B4F583A1E76285B00E02400 /* WebService  */ = {
+			isa = PBXGroup;
+			children = (
+				4B4F58371E76285000E02400 /* UACFWSConnectionHandler.h */,
+				4B4F58381E76285000E02400 /* UACFWSConnectionHandler.m */,
+				4B4F583B1E762D6000E02400 /* UACFWSResponse.h */,
+				4B4F583C1E762D6000E02400 /* UACFWSResponse.m */,
+			);
+			name = "WebService ";
+			sourceTree = "<group>";
+		};
+		4B4F58411E763ED800E02400 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4B4F584B1E764A2000E02400 /* MOBException.h */,
+				4B4F584C1E764A2000E02400 /* MOBException.m */,
+				4B4F584E1E764A9200E02400 /* MOBFlightStatusInfo.h */,
+				4B4F584F1E764A9200E02400 /* MOBFlightStatusInfo.m */,
+				4B4F58511E764ADD00E02400 /* MOBTypeOption.h */,
+				4B4F58521E764ADD00E02400 /* MOBTypeOption.m */,
+				4B4F58541E764B1E00E02400 /* MOBAirportAdvisoryMessage.h */,
+				4B4F58551E764B1E00E02400 /* MOBAirportAdvisoryMessage.m */,
+				4B4F58571E764BCB00E02400 /* MOBFlightStatusSegment.h */,
+				4B4F58581E764BCB00E02400 /* MOBFlightStatusSegment.m */,
+				4B4F58691E764D1100E02400 /* MOBBaggage.h */,
+				4B4F586A1E764D1100E02400 /* MOBBaggage.m */,
+				4B4F585A1E764C0600E02400 /* MOBEquipment.h */,
+				4B4F585B1E764C0600E02400 /* MOBEquipment.m */,
+				4B4F585D1E764C2600E02400 /* MOBAircraft.h */,
+				4B4F585E1E764C2600E02400 /* MOBAircraft.m */,
+				4B4F58601E764C7900E02400 /* MOBAirline.h */,
+				4B4F58611E764C7900E02400 /* MOBAirline.m */,
+				4B4F58631E764CB300E02400 /* MOBAirport.h */,
+				4B4F58641E764CB300E02400 /* MOBAirport.m */,
+				4B4F58661E764CDA00E02400 /* MOBFlightSegment.h */,
+				4B4F58671E764CDA00E02400 /* MOBFlightSegment.m */,
+				4B4F586C1E764D7B00E02400 /* MOBFlightStatusResponse.h */,
+				4B4F586D1E764D7B00E02400 /* MOBFlightStatusResponse.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		93D833765727A7C5A3FEBFAD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5B04DE110C265B663E239E36 /* Pods-MessagesExtension.debug.xcconfig */,
+				085F8FD8ADB7CECCE2EF7C06 /* Pods-MessagesExtension.release.xcconfig */,
+				00A5ED6B1CCE6119D8FDA756 /* Pods-MySecond_iMessagesApp.debug.xcconfig */,
+				A03B3A782B77F3D6F81704DD /* Pods-MySecond_iMessagesApp.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +262,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B2A46E91E71BB1300B016D6 /* Build configuration list for PBXNativeTarget "MySecond_iMessagesApp" */;
 			buildPhases = (
+				FAD4A0692948E2239E28D317 /* [CP] Check Pods Manifest.lock */,
 				4B2A46C61E71BB1200B016D6 /* Resources */,
 				4B2A46E81E71BB1300B016D6 /* Embed App Extensions */,
+				4940EC8EBF12A734AB8C0D47 /* Frameworks */,
+				D44E72B366A876AF6159C7BA /* [CP] Embed Pods Frameworks */,
+				D33CD4126974C6C487F0A7CE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -154,9 +283,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B2A46E51E71BB1300B016D6 /* Build configuration list for PBXNativeTarget "MessagesExtension" */;
 			buildPhases = (
+				26DD9F165CC289852E518CA5 /* [CP] Check Pods Manifest.lock */,
 				4B2A46CE1E71BB1200B016D6 /* Sources */,
 				4B2A46CF1E71BB1200B016D6 /* Frameworks */,
 				4B2A46D01E71BB1200B016D6 /* Resources */,
+				57F38EEE0DC999DD8662DEDA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -227,14 +358,106 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		26DD9F165CC289852E518CA5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		57F38EEE0DC999DD8662DEDA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MessagesExtension/Pods-MessagesExtension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D33CD4126974C6C487F0A7CE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MySecond_iMessagesApp/Pods-MySecond_iMessagesApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D44E72B366A876AF6159C7BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MySecond_iMessagesApp/Pods-MySecond_iMessagesApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAD4A0692948E2239E28D317 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4B2A46CE1E71BB1200B016D6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B4F587C1E7769E900E02400 /* MOBAirportAdvisoryMessage.m in Sources */,
+				4B4F587B1E7769B500E02400 /* MOBAirport.m in Sources */,
+				4B4F587A1E7769A500E02400 /* MOBTypeOption.m in Sources */,
 				4B2A47021E73630300B016D6 /* UALBaseMessageViewController.m in Sources */,
+				4B4F58621E764C7900E02400 /* MOBAirline.m in Sources */,
+				4B4F583D1E762D6000E02400 /* UACFWSResponse.m in Sources */,
 				4B2A46DC1E71BB1200B016D6 /* MessagesViewController.m in Sources */,
+				4B4F585F1E764C2600E02400 /* MOBAircraft.m in Sources */,
+				4B4F584D1E764A2000E02400 /* MOBException.m in Sources */,
+				4B4F58501E764A9200E02400 /* MOBFlightStatusInfo.m in Sources */,
+				4B4F58591E764BCB00E02400 /* MOBFlightStatusSegment.m in Sources */,
+				4B4F58681E764CDA00E02400 /* MOBFlightSegment.m in Sources */,
+				4B4F586B1E764D1100E02400 /* MOBBaggage.m in Sources */,
 				4B2A47051E73D5A300B016D6 /* UALFlightStatusMainViewController.m in Sources */,
+				4B4F58391E76285000E02400 /* UACFWSConnectionHandler.m in Sources */,
+				4B4F585C1E764C0600E02400 /* MOBEquipment.m in Sources */,
+				4B4F586E1E764D7B00E02400 /* MOBFlightStatusResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +507,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -300,11 +524,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"$(BUILD_ROOT)/**\"/**";
 			};
 			name = Debug;
 		};
@@ -332,6 +557,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -342,22 +568,29 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"$(BUILD_ROOT)/**\"/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		4B2A46E61E71BB1300B016D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B04DE110C265B663E239E36 /* Pods-MessagesExtension.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				DEVELOPMENT_TEAM = K69MGG379R;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/JSONModel",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "gopal.iosdev.MySecond-iMessagesApp.MessagesExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -366,12 +599,18 @@
 		};
 		4B2A46E71E71BB1300B016D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 085F8FD8ADB7CECCE2EF7C06 /* Pods-MessagesExtension.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				DEVELOPMENT_TEAM = K69MGG379R;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/JSONModel",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "gopal.iosdev.MySecond-iMessagesApp.MessagesExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -380,6 +619,7 @@
 		};
 		4B2A46EA1E71BB1300B016D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00A5ED6B1CCE6119D8FDA756 /* Pods-MySecond_iMessagesApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K69MGG379R;
@@ -391,6 +631,7 @@
 		};
 		4B2A46EB1E71BB1300B016D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A03B3A782B77F3D6F81704DD /* Pods-MySecond_iMessagesApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K69MGG379R;

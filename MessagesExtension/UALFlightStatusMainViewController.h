@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "UACFWSResponse.h"
+#import "UACFWSResponse.h"
+#import "UACFWSConnectionHandler.h"
+#import "MOBFlightStatusResponse.h"
 
 @interface UALFlightStatusMainViewController : UIViewController
 

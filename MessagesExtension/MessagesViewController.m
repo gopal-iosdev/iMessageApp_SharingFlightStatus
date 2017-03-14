@@ -114,73 +114,15 @@
     controller.view.frame = CGRectMake(0, 0, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
     
     [self.navigationController presentViewController: controller animated: YES completion: nil];
-    
-    //what are we currently on?
-//    UIView *compactStyleView = [self instantiateBaseMessageViewController];;
-//    UIView *expandStyleView = [self instantiateFlightStatusMainViewController];
-//    
-//    if (presentationStyle == MSMessagesAppPresentationStyleCompact) {
-//        
-//        [self slideBottom: expandStyleView : compactStyleView];
-//    }
-//    else{
-//        
-//        [self slideTop: compactStyleView : expandStyleView];
-//    }
-    
 }
 
-- (void) slideTop: (UIView *)compactStyleView :(UIView *)expandStyleView
-{
-    //reset the frame X to the left of the screen
-    expandStyleView.frame = CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
-    expandStyleView.hidden = NO;
-    
-    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionTransitionNone
-                     animations:^{
-                         
-                         compactStyleView.frame = CGRectMake(-self.messagesView.frame.size.width, 0, self.messagesView.frame.size.width, self.view.frame.size.height);
-                        expandStyleView.frame = CGRectMake(0, 0, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
-                     }
-                     completion:^(BOOL finished) {
-                         if (finished){
-                             
-                             compactStyleView.hidden = YES;
-                         }
-                     }];
-}
-
-- (void) slideBottom: (UIView *)expandStyleView :(UIView *)compactStyleView
-{
-    //set the frame X to the right of the screen
-    compactStyleView.frame = CGRectMake(-self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
-    compactStyleView.hidden = NO;
-    
-    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionTransitionNone
-                     animations:^{
-                         
-                        compactStyleView.frame = CGRectMake(0, 0, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
-                         expandStyleView.frame = CGRectMake(self.messagesView.frame.size.width, 0, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
-                    }
-                     completion:^(BOOL finished) {
-                         if (finished) {
-                             
-                             expandStyleView.hidden = YES;
-                         }
-                     }];
-}
-
+# pragma mark - Instantiate View Controllers
 
 - (UIViewController *)instantiateBaseMessageViewController{
     
     if (!self.baseMessageViewController) {
         self.baseMessageViewController = (UALBaseMessageViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALBaseMessageViewController"];
-        
         self.baseMessageViewController.delegate = self;
-        
-//        [self.messagesView addSubview: self.baseMessageViewController.view];
-//        [self addChildViewController: self.baseMessageViewController];
-//        [self.baseMessageViewController didMoveToParentViewController: self];
     }
     return self.baseMessageViewController;
 }
@@ -193,7 +135,7 @@
     return self.flightStatusController;
 }
 
-# pragma mark - 
+# pragma mark - Delegate Methods
 
 - (void)presentFlightStatusViewController{
         
