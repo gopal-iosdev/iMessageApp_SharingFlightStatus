@@ -219,6 +219,29 @@
                                                     <action selector="searchFlightStatusButtonClicked:" destination="Oro-f2-Cvs" eventType="touchUpInside" id="mnV-SV-uXH"/>
                                                 </connections>
                                             </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qce-Hm-FRs">
+                                                <rect key="frame" x="0.0" y="283.5" width="375" height="100"/>
+                                                <subviews>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aR8-WT-Unv">
+                                                        <rect key="frame" x="169" y="31.5" width="37" height="37"/>
+                                                    </activityIndicatorView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPM-QP-J7l">
+                                                        <rect key="frame" x="0.0" y="78.5" width="375" height="21"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="cPM-QP-J7l" firstAttribute="top" secondItem="aR8-WT-Unv" secondAttribute="bottom" constant="10" id="14c-jn-unW"/>
+                                                    <constraint firstItem="cPM-QP-J7l" firstAttribute="centerX" secondItem="qce-Hm-FRs" secondAttribute="centerX" id="JBt-CS-VMm"/>
+                                                    <constraint firstItem="cPM-QP-J7l" firstAttribute="leading" secondItem="qce-Hm-FRs" secondAttribute="leading" id="OLf-7n-2Yu"/>
+                                                    <constraint firstItem="aR8-WT-Unv" firstAttribute="centerX" secondItem="qce-Hm-FRs" secondAttribute="centerX" id="W8V-aa-b5e"/>
+                                                    <constraint firstItem="aR8-WT-Unv" firstAttribute="centerY" secondItem="qce-Hm-FRs" secondAttribute="centerY" id="fLe-bv-Sco"/>
+                                                    <constraint firstAttribute="height" constant="100" id="hsM-Sl-4vi"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cPM-QP-J7l" secondAttribute="trailing" id="q5T-xa-EHG"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="ynu-Ku-lEz" firstAttribute="centerY" secondItem="vBK-lp-Ai8" secondAttribute="centerY" id="0fO-eO-Z3q"/>
@@ -231,6 +254,8 @@
                                             <constraint firstItem="ynu-Ku-lEz" firstAttribute="leading" secondItem="vBK-lp-Ai8" secondAttribute="trailing" constant="4" id="GMd-4w-gyQ"/>
                                             <constraint firstItem="c47-xr-IvP" firstAttribute="leading" secondItem="hyb-c8-ETk" secondAttribute="leading" id="JaI-KP-j16"/>
                                             <constraint firstItem="ZYm-DN-9rd" firstAttribute="top" secondItem="c47-xr-IvP" secondAttribute="bottom" constant="20" id="Ob2-ak-eU3"/>
+                                            <constraint firstAttribute="trailing" secondItem="qce-Hm-FRs" secondAttribute="trailing" id="PPu-i7-6Km"/>
+                                            <constraint firstItem="qce-Hm-FRs" firstAttribute="centerY" secondItem="hyb-c8-ETk" secondAttribute="centerY" id="Pb9-bB-u8k"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qLA-k9-rn6" secondAttribute="bottom" constant="20" id="QSA-ag-7TQ"/>
                                             <constraint firstItem="3I0-8F-x31" firstAttribute="top" secondItem="ZYm-DN-9rd" secondAttribute="bottom" constant="20" id="THZ-Ro-eTJ"/>
                                             <constraint firstAttribute="trailing" secondItem="ZYm-DN-9rd" secondAttribute="trailing" constant="10" id="aj6-uW-mN7"/>
@@ -239,6 +264,7 @@
                                             <constraint firstItem="ZYm-DN-9rd" firstAttribute="leading" secondItem="hyb-c8-ETk" secondAttribute="leading" constant="15" id="d8h-vO-pBB"/>
                                             <constraint firstAttribute="trailing" secondItem="0eN-HQ-bOg" secondAttribute="trailing" constant="10" id="e99-6e-f6T"/>
                                             <constraint firstItem="qLA-k9-rn6" firstAttribute="top" secondItem="0eN-HQ-bOg" secondAttribute="bottom" constant="30" id="jzK-Uu-AgJ"/>
+                                            <constraint firstItem="qce-Hm-FRs" firstAttribute="leading" secondItem="hyb-c8-ETk" secondAttribute="leading" id="rQW-Rj-05H"/>
                                             <constraint firstAttribute="trailing" secondItem="3I0-8F-x31" secondAttribute="trailing" constant="10" id="z0r-td-Hgu"/>
                                             <constraint firstItem="c47-xr-IvP" firstAttribute="top" secondItem="vBK-lp-Ai8" secondAttribute="bottom" constant="10" id="zSu-eL-HfV"/>
                                         </constraints>
@@ -263,11 +289,15 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="aR8-WT-Unv" id="xQx-iw-G6g"/>
+                        <outlet property="activityIndicatorView" destination="qce-Hm-FRs" id="R2a-s5-zub"/>
+                        <outlet property="activityIndicatorViewHeightConstraint" destination="hsM-Sl-4vi" id="vOL-WI-QiN"/>
                         <outlet property="flightDepartDatePickerView" destination="0eN-HQ-bOg" id="1z8-nU-BBo"/>
                         <outlet property="flightNumberSearchTitleLabel" destination="ZYm-DN-9rd" id="Exu-yf-VWU"/>
                         <outlet property="flightNumberSearchTitleLabelHeightConstraint" destination="WjY-gI-pQQ" id="mdb-Pf-Opf"/>
                         <outlet property="flightNumberTextField" destination="Zhq-4O-M7U" id="lzD-zg-nGr"/>
                         <outlet property="searchFlightStatusButton" destination="qLA-k9-rn6" id="NIV-ba-0CP"/>
+                        <outlet property="statusMessageLabel" destination="cPM-QP-J7l" id="Hkh-1I-VpD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7vy-dc-XpW" userLabel="First Responder" sceneMemberID="firstResponder"/>

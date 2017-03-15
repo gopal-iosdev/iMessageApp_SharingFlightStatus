@@ -27,9 +27,6 @@
 
 - (void)updateFlightStatusView{
     
-    //
-    
-    
     NSString *flightDate = [UALFlightStatusViewController getWordFormatStringDatefrom: self.flightStatusSegment.scheduledDepartureDateTime];
     
     NSString *origin = @"";

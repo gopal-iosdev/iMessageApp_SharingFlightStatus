@@ -39,5 +39,13 @@
 
 @property (weak, nonatomic) NSObject<UALFlightStatusMainViewControllerDelegate> *delegate;
 
+@property (weak, nonatomic) IBOutlet UIView *activityIndicatorView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *activityIndicatorViewHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+@property (weak, nonatomic) IBOutlet UILabel *statusMessageLabel;
+
 
 @end

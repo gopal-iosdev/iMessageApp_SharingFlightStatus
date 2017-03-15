@@ -34,6 +34,7 @@
 		4B4F587F1E777A4700E02400 /* UALFlightStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F587E1E777A4700E02400 /* UALFlightStatusViewController.m */; };
 		4B4F58821E77B9B100E02400 /* UALFlightStatusAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58811E77B9B100E02400 /* UALFlightStatusAdapter.m */; };
 		4B4F58881E7883AA00E02400 /* United_Plane.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B4F58871E7883A900E02400 /* United_Plane.png */; };
+		4B4F588A1E78B2A000E02400 /* logo_ua.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B4F58891E78B2A000E02400 /* logo_ua.png */; };
 		56C661549B09FE1F80EE68B7 /* libPods-MySecond_iMessagesApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E293A202DB7130469A3AF3F0 /* libPods-MySecond_iMessagesApp.a */; };
 		BA879D22DCCD37AE3A74FC07 /* libPods-MessagesExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E947B4BE04CA052F0D13C8 /* libPods-MessagesExtension.a */; };
 /* End PBXBuildFile section */
@@ -114,6 +115,7 @@
 		4B4F58801E77B9B100E02400 /* UALFlightStatusAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UALFlightStatusAdapter.h; sourceTree = "<group>"; };
 		4B4F58811E77B9B100E02400 /* UALFlightStatusAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UALFlightStatusAdapter.m; sourceTree = "<group>"; };
 		4B4F58871E7883A900E02400 /* United_Plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = United_Plane.png; sourceTree = "<group>"; };
+		4B4F58891E78B2A000E02400 /* logo_ua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ua.png; sourceTree = "<group>"; };
 		5B04DE110C265B663E239E36 /* Pods-MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesExtension/Pods-MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		A03B3A782B77F3D6F81704DD /* Pods-MySecond_iMessagesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecond_iMessagesApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MySecond_iMessagesApp/Pods-MySecond_iMessagesApp.release.xcconfig"; sourceTree = "<group>"; };
 		E293A202DB7130469A3AF3F0 /* libPods-MySecond_iMessagesApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MySecond_iMessagesApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				4B4F58871E7883A900E02400 /* United_Plane.png */,
+				4B4F58891E78B2A000E02400 /* logo_ua.png */,
 				4B4F58361E7627EF00E02400 /* View Controllers */,
 				4B2A46DD1E71BB1200B016D6 /* MainInterface.storyboard */,
 				4B2A46E01E71BB1200B016D6 /* Assets.xcassets */,
@@ -195,6 +198,7 @@
 				4B4F583A1E76285B00E02400 /* WebService  */,
 				4B4F58411E763ED800E02400 /* Models */,
 				4B4F58831E77B9BC00E02400 /* WebService Adapters */,
+				4B4F58921E78C98300E02400 /* Custom Views */,
 			);
 			path = MessagesExtension;
 			sourceTree = "<group>";
@@ -263,6 +267,13 @@
 				4B4F58811E77B9B100E02400 /* UALFlightStatusAdapter.m */,
 			);
 			name = "WebService Adapters";
+			sourceTree = "<group>";
+		};
+		4B4F58921E78C98300E02400 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Custom Views";
 			sourceTree = "<group>";
 		};
 		93D833765727A7C5A3FEBFAD /* Pods */ = {
@@ -372,6 +383,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B4F588A1E78B2A000E02400 /* logo_ua.png in Resources */,
 				4B4F58881E7883AA00E02400 /* United_Plane.png in Resources */,
 				4B2A46E11E71BB1200B016D6 /* Assets.xcassets in Resources */,
 				4B2A46DF1E71BB1200B016D6 /* MainInterface.storyboard in Resources */,

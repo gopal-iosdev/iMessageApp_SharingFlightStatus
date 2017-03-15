@@ -24,12 +24,13 @@ NSString *requestString;
     // Do any additional setup after loading the view.
     self.flightNumberSearchTitleLabelHeightConstraint.constant = 44.0;
     self.flightNumberTextField.delegate = self;
+    
+    [self updateAcitivityIndicatorWithFlag: 0];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear: animated];
-    //[self.flightNumberTextField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,13 +46,16 @@ NSString *requestString;
 
 - (IBAction)searchFlightStatusButtonClicked:(UIButton *)sender {
     
+    [self updateAcitivityIndicatorWithFlag: 1];
+    self.activityIndicatorViewHeightConstraint.constant = 100;
     [self resignFirstResponders];
     if ([self.flightNumberTextField.text length] > 0){
         
         [self doSearchByFlightNumber];
     }
     else{
-
+        
+        [self updateAcitivityIndicatorWithFlag: 0];
         [self showAlertViewWithTitle: @"United Airlines" message: @"Please complete all necessary information to search for Flight information."];
     }
 }
@@ -85,6 +89,8 @@ NSString *requestString;
 
 - (void)flightStatusWithNumberCallCompleted:(UACFWSResponse *)response{
     
+    [self updateAcitivityIndicatorWithFlag: 0];
+    self.activityIndicatorViewHeightConstraint.constant = 0;
     if (response.Error == nil){
         
         NSString *jsonString = (NSString *)response.Result;
@@ -159,5 +165,12 @@ NSString *requestString;
      [self.delegate composeMessageWithFlightStatusSegment: flightStatusSegment];
 }
 
+# pragma mark - All Helper Methods
+
+- (void)updateAcitivityIndicatorWithFlag: (int)show{
+    
+    self.activityIndicator.alpha = show;
+    self.statusMessageLabel.alpha = show;
+}
 
 @end

@@ -29,6 +29,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+# pragma mark - Message
+
+- (void)didSelectMessage:(MSMessage *)message
+            conversation:(MSConversation *)conversation{
+    
+    NSLog(@"Did Select message");
+}
+
 #pragma mark - Conversation Handling
 
 -(void)willBecomeActiveWithConversation:(MSConversation *)conversation {
@@ -86,7 +94,7 @@
     [self presentViewControllerForconversation: conversation withPresentationStyle: self.presentationStyle];
 }
 
-# pragma mark -
+# pragma mark - Present View Controllers
 
 - (void) presentViewControllerForconversation:(MSConversation *)conversation withPresentationStyle: (MSMessagesAppPresentationStyle)presentationStyle{
     
@@ -118,11 +126,10 @@
     [controller didMoveToParentViewController: self];
     
     controller.view.frame = CGRectMake(0, 0, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
-    
     [self.navigationController presentViewController: controller animated: YES completion: nil];
 }
 
-# pragma mark - Instantiate View Controllers
+# pragma mark Instantiate View Controllers
 
 - (UIViewController *)instantiateBaseMessageViewController{
     
