@@ -29,7 +29,6 @@
                     <view key="view" contentMode="scaleToFill" id="zMn-AG-sqS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -394,16 +393,16 @@
                                                 <rect key="frame" x="0.0" y="139" width="375" height="528"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="KnQ-Cj-Ky3">
-                                                        <rect key="frame" x="15" y="10" width="330" height="30"/>
+                                                        <rect key="frame" x="15" y="0.0" width="330" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="ThR-D0-6qz"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                                        <color key="textColor" red="0.2666666667" green="0.53333333329999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="47" placeholderIntrinsicHeight="33" text="ORD" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="47" translatesAutoresizingMaskIntoConstraints="NO" id="0Cf-tr-WVx" userLabel="Label - Departure Airport">
-                                                        <rect key="frame" x="15" y="50" width="47" height="33"/>
+                                                        <rect key="frame" x="15" y="40" width="47" height="33"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="33" id="2FY-VK-MKE"/>
                                                             <constraint firstAttribute="width" constant="47" id="AIE-XB-01J"/>
@@ -413,13 +412,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="40" placeholderIntrinsicHeight="33" text="IAH" textAlignment="right" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="O0U-bc-dgL" userLabel="Label - Arrival Airport">
-                                                        <rect key="frame" x="318" y="50" width="47" height="33"/>
+                                                        <rect key="frame" x="318" y="40" width="47" height="33"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:15am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZl-m4-oOR" userLabel="Label - Scheduled Departure Time">
-                                                        <rect key="frame" x="15" y="88" width="93" height="25"/>
+                                                        <rect key="frame" x="15" y="78" width="93" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="1UM-3i-aQG"/>
                                                         </constraints>
@@ -428,20 +427,20 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plane" translatesAutoresizingMaskIntoConstraints="NO" id="UK6-Fj-9n3">
-                                                        <rect key="frame" x="175" y="88" width="26" height="26"/>
+                                                        <rect key="frame" x="175" y="78" width="26" height="26"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="26" id="Gls-mX-3cw"/>
                                                             <constraint firstAttribute="height" constant="26" id="V0o-YL-Weo"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:25pm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jym-dO-Nxe" userLabel="Label - Scheduled Arrival Time">
-                                                        <rect key="frame" x="238" y="88" width="81" height="25"/>
+                                                        <rect key="frame" x="238" y="78" width="81" height="25"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="25" text="(23 Jul)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBs-9L-GI9">
-                                                        <rect key="frame" x="320" y="88" width="45" height="25"/>
+                                                        <rect key="frame" x="320" y="78" width="45" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="45" id="BKL-Py-sgO"/>
                                                         </constraints>
@@ -449,7 +448,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scheduled" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rdc-cs-pEi">
-                                                        <rect key="frame" x="15" y="115" width="58" height="21"/>
+                                                        <rect key="frame" x="15" y="105" width="58" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="ZmP-fj-FqN"/>
                                                         </constraints>
@@ -458,13 +457,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scheduled" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLB-Gy-D5f">
-                                                        <rect key="frame" x="307" y="115" width="58" height="21"/>
+                                                        <rect key="frame" x="307" y="105" width="58" height="21"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                         <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ih-sx-PjK" userLabel="estimatedSegmentView">
-                                                        <rect key="frame" x="15" y="156" width="350" height="50"/>
+                                                        <rect key="frame" x="15" y="146" width="350" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:15am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC1-2K-ZTe" userLabel="Label - Scheduled Departure Time">
                                                                 <rect key="frame" x="0.0" y="0.0" width="93" height="25"/>
@@ -523,13 +522,13 @@
                                                         </constraints>
                                                     </view>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dottedline" translatesAutoresizingMaskIntoConstraints="NO" id="Ad3-L9-pcy">
-                                                        <rect key="frame" x="0.0" y="226" width="375" height="2"/>
+                                                        <rect key="frame" x="0.0" y="216" width="375" height="2"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="2" id="Osd-SU-Tlm"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAC-1g-e9m">
-                                                        <rect key="frame" x="15" y="248" width="26" height="21"/>
+                                                        <rect key="frame" x="15" y="238" width="26" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="YvW-E4-QuW"/>
                                                         </constraints>
@@ -538,7 +537,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gate" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngi-FN-aIn">
-                                                        <rect key="frame" x="299" y="248" width="66" height="21"/>
+                                                        <rect key="frame" x="299" y="238" width="66" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="v14-RT-rvo"/>
                                                         </constraints>
@@ -547,7 +546,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVy-9Q-IgJ" userLabel="Departure Gate">
-                                                        <rect key="frame" x="15" y="271" width="31" height="41"/>
+                                                        <rect key="frame" x="15" y="261" width="31" height="41"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="41" id="2vR-pf-vTk"/>
                                                         </constraints>
@@ -556,13 +555,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C127" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIZ-EJ-uVa" userLabel="Arrival Gate">
-                                                        <rect key="frame" x="308" y="271" width="57" height="41"/>
+                                                        <rect key="frame" x="308" y="261" width="57" height="41"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Baggage claim" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yf5-ee-ryT">
-                                                        <rect key="frame" x="284.5" y="322" width="80.5" height="20"/>
+                                                        <rect key="frame" x="284.5" y="312" width="80.5" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="O7U-95-UhZ"/>
                                                         </constraints>
@@ -571,7 +570,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carousel 56" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="BKX-8m-lcA" userLabel="carousel">
-                                                        <rect key="frame" x="240" y="344" width="125" height="26"/>
+                                                        <rect key="frame" x="240" y="334" width="125" height="26"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="26" id="6C7-I5-6OY"/>
                                                         </constraints>
@@ -580,13 +579,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dottedline" translatesAutoresizingMaskIntoConstraints="NO" id="nY6-bv-eaX">
-                                                        <rect key="frame" x="0.0" y="392" width="375" height="2"/>
+                                                        <rect key="frame" x="0.0" y="382" width="375" height="2"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="2" id="Uea-81-iX8"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3TT-Fb-G1Y">
-                                                        <rect key="frame" x="122.5" y="439" width="130" height="30"/>
+                                                        <rect key="frame" x="122.5" y="429" width="130" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="Xzx-a5-4FE"/>
                                                         </constraints>
@@ -617,7 +616,7 @@
                                                     <constraint firstItem="0Cf-tr-WVx" firstAttribute="top" secondItem="KnQ-Cj-Ky3" secondAttribute="bottom" constant="10" id="IPz-j7-MuZ"/>
                                                     <constraint firstItem="hVy-9Q-IgJ" firstAttribute="leading" secondItem="oAC-1g-e9m" secondAttribute="leading" id="K5T-nz-29P"/>
                                                     <constraint firstItem="O0U-bc-dgL" firstAttribute="top" secondItem="0Cf-tr-WVx" secondAttribute="top" id="LDj-mr-Clf"/>
-                                                    <constraint firstItem="KnQ-Cj-Ky3" firstAttribute="top" secondItem="E2n-3k-vo6" secondAttribute="top" constant="10" id="LWO-WD-D21"/>
+                                                    <constraint firstItem="KnQ-Cj-Ky3" firstAttribute="top" secondItem="E2n-3k-vo6" secondAttribute="top" id="LWO-WD-D21"/>
                                                     <constraint firstItem="dIZ-EJ-uVa" firstAttribute="top" secondItem="hVy-9Q-IgJ" secondAttribute="top" id="NGG-6B-oKj"/>
                                                     <constraint firstItem="UK6-Fj-9n3" firstAttribute="centerX" secondItem="E2n-3k-vo6" secondAttribute="centerX" id="RLx-8i-EFg"/>
                                                     <constraint firstItem="nY6-bv-eaX" firstAttribute="leading" secondItem="Ad3-L9-pcy" secondAttribute="leading" id="Rkx-HU-bL9"/>

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B03BD921E7B236600E8D2DD /* United_Plane_Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B03BD911E7B236600E8D2DD /* United_Plane_Blue.png */; };
+		4B03BD941E7B256100E8D2DD /* plane_home5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B03BD931E7B256100E8D2DD /* plane_home5.png */; };
+		4B03BD961E7B2FEF00E8D2DD /* test_plane.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B03BD951E7B2FEF00E8D2DD /* test_plane.png */; };
+		4B03BD981E7B328F00E8D2DD /* test_plane2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B03BD971E7B328F00E8D2DD /* test_plane2.png */; };
 		4B2A46CC1E71BB1200B016D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2A46CB1E71BB1200B016D6 /* Assets.xcassets */; };
 		4B2A46D31E71BB1200B016D6 /* MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4B2A46D21E71BB1200B016D6 /* MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4B2A46D81E71BB1200B016D6 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2A46D71E71BB1200B016D6 /* Messages.framework */; };
@@ -68,6 +72,10 @@
 /* Begin PBXFileReference section */
 		00A5ED6B1CCE6119D8FDA756 /* Pods-MySecond_iMessagesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecond_iMessagesApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MySecond_iMessagesApp/Pods-MySecond_iMessagesApp.debug.xcconfig"; sourceTree = "<group>"; };
 		085F8FD8ADB7CECCE2EF7C06 /* Pods-MessagesExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesExtension/Pods-MessagesExtension.release.xcconfig"; sourceTree = "<group>"; };
+		4B03BD911E7B236600E8D2DD /* United_Plane_Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = United_Plane_Blue.png; sourceTree = "<group>"; };
+		4B03BD931E7B256100E8D2DD /* plane_home5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane_home5.png; sourceTree = "<group>"; };
+		4B03BD951E7B2FEF00E8D2DD /* test_plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_plane.png; sourceTree = "<group>"; };
+		4B03BD971E7B328F00E8D2DD /* test_plane2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_plane2.png; sourceTree = "<group>"; };
 		4B2A46C81E71BB1200B016D6 /* MySecond_iMessagesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySecond_iMessagesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2A46CB1E71BB1200B016D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B2A46CD1E71BB1200B016D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -195,8 +203,12 @@
 		4B2A46D91E71BB1200B016D6 /* MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
+				4B03BD931E7B256100E8D2DD /* plane_home5.png */,
+				4B03BD911E7B236600E8D2DD /* United_Plane_Blue.png */,
 				4B4F58871E7883A900E02400 /* United_Plane.png */,
 				4B4F58891E78B2A000E02400 /* logo_ua.png */,
+				4B03BD951E7B2FEF00E8D2DD /* test_plane.png */,
+				4B03BD971E7B328F00E8D2DD /* test_plane2.png */,
 				4B4F58991E79D25000E02400 /* UIModels */,
 				4B4F58361E7627EF00E02400 /* View Controllers */,
 				4B2A46DD1E71BB1200B016D6 /* MainInterface.storyboard */,
@@ -402,9 +414,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B4F588A1E78B2A000E02400 /* logo_ua.png in Resources */,
+				4B03BD921E7B236600E8D2DD /* United_Plane_Blue.png in Resources */,
 				4B4F58881E7883AA00E02400 /* United_Plane.png in Resources */,
+				4B03BD981E7B328F00E8D2DD /* test_plane2.png in Resources */,
+				4B03BD961E7B2FEF00E8D2DD /* test_plane.png in Resources */,
 				4B2A46E11E71BB1200B016D6 /* Assets.xcassets in Resources */,
 				4B2A46DF1E71BB1200B016D6 /* MainInterface.storyboard in Resources */,
+				4B03BD941E7B256100E8D2DD /* plane_home5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

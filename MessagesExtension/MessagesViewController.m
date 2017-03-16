@@ -115,19 +115,18 @@
     
     //controller = [self instantiateFlightStatusMainViewController];
     
+    CGFloat yPosition = 0;
     
     if (presentationStyle == MSMessagesAppPresentationStyleCompact) {
-        
         controller = [self instantiateBaseMessageViewController];
     }
     else{
-        
         if (conversation.selectedMessage.URL) {
             [self fetchComponentsFromUrl: conversation.selectedMessage.URL];
             controller = [self instantiateFlightStatusViewController];
+            yPosition = -5;
         }
         else{
-            
             controller = [self instantiateFlightStatusMainViewController];
         }
     }
@@ -136,7 +135,7 @@
     [self addChildViewController: controller];
     [controller didMoveToParentViewController: self];
     
-    controller.view.frame = CGRectMake(0, 0, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
+    controller.view.frame = CGRectMake(0, yPosition, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
     [self.navigationController presentViewController: controller animated: YES completion: nil];
 }
 
@@ -185,11 +184,13 @@
     messageLayout.trailingCaption = flightSegment.flightArrivalCode;
     messageLayout.trailingSubcaption = [NSString stringWithFormat: @"%@%@", flightSegment.flightScheduledArrivalTime, flightSegment.flightScheduledArrivalDay];
     
-    messageLayout.image = [UIImage imageNamed: @"United_Plane.png"];
+    messageLayout.image = [UIImage imageNamed: @"test_plane2.png"];//, @"United_Plane.png", @
     message.URL = [self composeNavigationUrlForFlightStatusSegment: flightSegment];
     message.layout = messageLayout;
     
-    message.summaryText = @"Message Summary Text";
+    NSString *userName = self.activeConversation.localParticipantIdentifier.UUIDString;
+    
+    message.summaryText = [NSString stringWithFormat: @"%@ has Shared Flight Status With You", userName];
     
     //[self.activeConversation insertMessage: message completionHandler: nil];
     

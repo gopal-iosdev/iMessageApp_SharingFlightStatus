@@ -54,7 +54,7 @@ static UALFlightStatusAdapter *gInstance = NULL;
     NSString *devOrStageUrl = @"https://mobile-test.united.com/REST17CUAT/api";
     NSString *prodUrl = @"https://smartphone.united.com/UnitedMobileDataServices/api";
     
-    NSString *baseURL = [prodUrl stringByAppendingString: urlString];
+    NSString *baseURL = [devOrStageUrl stringByAppendingString: urlString];
     NSURL *url = [NSURL URLWithString: baseURL];
     return url;
 }
