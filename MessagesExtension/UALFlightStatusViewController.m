@@ -17,7 +17,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self updateFlightStatusView];
+    
+    if (self.makeFlightStatusWebServiceCall) {
+        
+        [self buildFlightSegmentModel];
+        self.makeFlightStatusWebServiceCall = NO;
+    }
+    else{
+        
+        [self updateFlightStatusViewNew];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,323 +34,87 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)updateFlightStatusView{
-    
-    NSString *flightDate = [UALFlightStatusViewController getWordFormatStringDatefrom: self.flightStatusSegment.scheduledDepartureDateTime];
-    
-    NSString *origin = @"";
-    NSString *destination = @"";
-    
-    //check to see if we have the cities...
-    if (![self.flightStatusSegment.departure.city isEqualToString:@""])
-    {
-        origin = self.flightStatusSegment.departure.city;
-    }
-    else
-    {
-        origin = self.flightStatusSegment.departure.code;
-    }
-    
-    if (![self.flightStatusSegment.arrival.city isEqualToString:@""])
-    {
-        destination = self.flightStatusSegment.arrival.city;
-    }
-    else
-    {
-        destination = self.flightStatusSegment.arrival.code;
-    }
+# pragma mark - Build Flight Segment Model
 
+- (void)buildFlightSegmentModel{
     
-    self.flightNumAndDepartDateLabel.text = [NSString stringWithFormat:@"%@%@ / %@", @"UA", self.flightStatusSegment.flightNumber, flightDate];
-    self.departureToArrivalCityLabel.text = [NSString stringWithFormat:@"%@ to %@", origin, destination];
+    __weak typeof(self) weakSelf = self;
+    [[UALFlightSegment singleton] returnUALFlightSegementFor: self.flightSegment.flightNumber forFlightDate: self.flightSegment.flightDateForMakingUrl forOrigin: self.flightSegment.flightDepartureCode completionHandler:^(UALFlightSegment *flightSegment) {
+        [weakSelf updateFlightStatusViewWith: flightSegment];
+    }];
+}
+
+- (void)updateFlightStatusViewWith: (UALFlightSegment *)flightSegment{
+    
+    self.flightSegment = flightSegment;
+    [self updateFlightStatusViewNew];
+}
+
+
+- (void)updateFlightStatusViewNew{
+    
+    if (self.flightSegment.flightStatusCallFailed) {
+        [self showAlertViewWithTitle: @"United Airlines" message: self.flightSegment.errorMessage];
+        return;
+    }
+    self.flightNumAndDepartDateLabel.text = [NSString stringWithFormat:@"%@%@ / %@", @"UA", self.flightSegment.flightNumber, self.flightSegment.flightDepartDay];
+    
+    self.departureToArrivalCityLabel.text = [NSString stringWithFormat:@"%@ to %@", self.flightSegment.flightDepartCityName, self.flightSegment.flightArrivalCityName];
     
     //FLIGHT STATUS
-    self.flightStatusLabel.text = self.flightStatusSegment.status;
-    
-    self.flightStatusLabel.textColor = self.flightStatusSegment.isSegmentCancelled? [UIColor redColor]: [UIColor greenColor];
+    self.flightStatusLabel.text = self.flightSegment.flightStatus;
+    self.flightStatusLabel.textColor = self.flightSegment.flightStatusTextColor;
     
     //Origin & Destination
-    self.flightOriginLabel.text = self.flightStatusSegment.departure.code;
-    self.flightDestinationLabel.text = self.flightStatusSegment.arrival.code;
+    self.flightOriginLabel.text = self.flightSegment.flightDepartureCode;
+    self.flightDestinationLabel.text = self.flightSegment.flightArrivalCode;
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setAMSymbol:@"am"];
-    [dateFormatter setPMSymbol:@"pm"];
+    self.flightDepartureTimeLabel.text = self.flightSegment.flightScheduledDepartureTime;
+    self.flightArrivalTimeLabel.text = self.flightSegment.flightScheduledArrivalTime;
     
-    NSLocale *timeLocale2 = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormatter setLocale:timeLocale2];
+    self.flightArrivalDayLabelWidthConstraint.constant = self.flightSegment.flightScheduledArrivalDayLabelWidthConstraint;
+    self.flightArrivalDayLabel.text = self.flightSegment.flightScheduledArrivalDay;
     
-    [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mma"];
-    NSDate *scheduleDepartureDate = [dateFormatter dateFromString: self.flightStatusSegment.scheduledDepartureDateTime];
-    NSDate *departureDate = [dateFormatter dateFromString: self.flightStatusSegment.scheduledDepartureDateTime];
-    NSDate *arrivalDate = [dateFormatter dateFromString: self.flightStatusSegment.scheduledArrivalDateTime];
+    self.lblScheduleDepartureName.textColor = self.flightSegment.flightScheduledDepartureStatusTextColor;
+    self.lblScheduleDepartureName.text = self.flightSegment.flightScheduledDepartureStatus;
+    self.lblScheduledArrivalName.text = self.flightSegment.flightScheduledArrivalStatus;
     
-    [dateFormatter setDateFormat:@"h:mma"];
+    self.estimatedSegmentViewHeightConstraint.constant = self.flightSegment.flightEstimatedSegmentViewHeightConstraint;
+    self.estimatedSegmentFlightDepartureTimeLabelHeightConstraint.constant = self.flightSegment.flightEstimatedSegmentFlightDepartureTimeLabelHeightConstraint;
+    self.estimatedSegmentLeftLabelHeightConstraint.constant = self.flightSegment.flightEstimatedDepartureStatusLabelHeightConstraint;
     
-    self.flightDepartureTimeLabel.text = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: self.flightStatusSegment.scheduledDepartureDateTime withFormat: @"h:mma"];//[dateFormatter stringFromDate:departureDate];
-    self.flightArrivalTimeLabel.text = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: self.flightStatusSegment.scheduledArrivalDateTime withFormat: @"h:mma"];;//[dateFormatter stringFromDate:arrivalDate];
+    self.estimatedSegmentFlightDepartureTimeLabel.text = self.flightSegment.flightEstimatedDepartureTime;
+    self.estimatedSegmentFlightArrivalTimeLabel.text = self.flightSegment.flightEstimatedArrivalTime;
     
-    [dateFormatter setDateFormat:@"(MMM d)"];
-    NSString *offsetDate = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: self.flightStatusSegment.scheduledArrivalDateTime withFormat: @"(MMM d)"];//[dateFormatter stringFromDate:arrivalDate];
+    self.lblDateOffsetEstimatedOrActualWidthConstraint.constant = self.flightSegment.flightEstimatedArrivalDayLabelWidthConstraint;
+    self.lblDateOffsetEstimatedOrActual.text = self.flightSegment.flightEstimatedArrivalDay;
     
-    NSDate *departDtWithoutTime = [self dateWithOutTime:departureDate];
-    NSDate *arriveDtWithoutTime = [self dateWithOutTime:arrivalDate];
+    self.estimatedSegmentLeftLabel.text = self.flightSegment.flightEstimatedDepartureStatus;
+    self.estimatedSegmentRightLabel.text = self.flightSegment.flightEstimatedArrivalStatus;
     
-    // flightArrivalDayLabel
+    self.departureGateLabel.text = self.flightSegment.flightDepartureGateNum;
+    self.arrivalGateLabel.text = self.flightSegment.flightArrivalGateNum;
     
-    if ([departDtWithoutTime isEqualToDate:arriveDtWithoutTime]){
-        
-        self.flightArrivalDayLabelWidthConstraint.constant = 0;
-    }
-    else{
-        
-        self.flightArrivalDayLabel.text = offsetDate;
-        self.flightArrivalDayLabelWidthConstraint.constant = 45;
-    }
-    
-    // lblScheduleDepartureName, lblScheduledArrivalName
-
-    if (self.flightStatusSegment.isSegmentCancelled){
-        
-        self.lblScheduleDepartureName.text = @"Canceled";
-        self.lblScheduledArrivalName.text = @"";
-        self.lblScheduleDepartureName.textColor = [UIColor redColor];
-    }
-    else{
-        self.lblScheduleDepartureName.text = @"Scheduled";
-        self.lblScheduledArrivalName.text = @"Scheduled";
-    }
-    
-    //
-    
-    //ESTIMATED OR ACTUAL TIME
-    NSString *schDeparture = self.flightStatusSegment.scheduledDepartureDateTime;
-    NSString *schArrival = self.flightStatusSegment.scheduledArrivalDateTime;
-    NSString *estDeparture = self.flightStatusSegment.estimatedDepartureDateTime;
-    NSString *estArrival = self.flightStatusSegment.estimatedArrivalDateTime;
-    NSString *actDeparture = self.flightStatusSegment.actualDepartureDateTime;
-    NSString *actArrival = self.flightStatusSegment.actualArrivalDateTime;
-    
-    bool bHide = NO;
-    //check to see if this flight has not departed yet...
-    if (actDeparture.length == 0)
-    {
-        bool bHideDeparture = NO;
-        bool bHideArrival = NO;
-        
-        //check to see if we have estimated departure and if so, is the same as scheduled?
-        if (estDeparture.length == 0 || [schDeparture isEqualToString:estDeparture])
-        {
-            bHideDeparture = YES;
-            
-        }
-        
-        //check to see if we have estimated departure and if so, is the same as scheduled?
-        if (estArrival.length == 0 || [schArrival isEqualToString:estArrival])
-        {
-            bHideArrival = YES;
-            
-        }
-        
-        if (bHideDeparture == YES && bHideArrival == YES)
-        {
-            bHide = YES;
-        }
-        else
-        {
-            bHide = NO;
-        }
-        
-    }
-    if (self.flightStatusSegment.isSegmentCancelled)
-    {
-        bHide = YES;
-    }
-    
-    //reset all the labels...
-    self.estimatedSegmentFlightDepartureTimeLabel.text = @"";
-    self.estimatedSegmentLeftLabel.text = @"";
-    self.estimatedSegmentFlightArrivalTimeLabel.text = @"";
-    self.estimatedSegmentRightLabel.text = @"";
-    
-    if (bHide == YES){
-        //we need to hide the Estimated/Actual view
-        // hide Estimated View
-        self.estimatedSegmentViewHeightConstraint.constant = 0;
-        self.estimatedSegmentFlightDepartureTimeLabelHeightConstraint.constant = 0;
-        self.estimatedSegmentLeftLabelHeightConstraint.constant = 0;
-    }
-    else{
-        
-        // Don't hide Estimated View
-        
-        self.estimatedSegmentViewHeightConstraint.constant = 50;
-        self.estimatedSegmentFlightDepartureTimeLabelHeightConstraint.constant = 25;
-        self.estimatedSegmentLeftLabelHeightConstraint.constant = 21;
-        
-        //do we have an actual departure time?
-        if (actDeparture.length){
-            
-            self.estimatedSegmentLeftLabel.text = @"Actual";
-            [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
-            departureDate = [dateFormatter dateFromString: actDeparture];
-            
-            [dateFormatter setDateFormat:@"h:mma"];
-            
-            self.estimatedSegmentFlightDepartureTimeLabel.text = [dateFormatter stringFromDate:departureDate];
-            
-        }
-        else if (estDeparture.length){
-            
-            self.estimatedSegmentLeftLabel.text = @"Estimated";
-            [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
-            departureDate = [dateFormatter dateFromString: estDeparture];
-            
-            [dateFormatter setDateFormat:@"h:mma"];
-            
-            self.estimatedSegmentFlightDepartureTimeLabel.text = [dateFormatter stringFromDate:departureDate];
-        }
-        else{//always default to scheduled
-            
-            self.estimatedSegmentLeftLabel.text = @"Scheduled";
-            self.estimatedSegmentFlightDepartureTimeLabel.text = self.flightDepartureTimeLabel.text;
-        }
-        
-        //do we have an actual departure time?
-        if (actArrival.length){
-            
-            self.estimatedSegmentRightLabel.text = @"Actual";
-            [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
-            arrivalDate = [dateFormatter dateFromString: actArrival];
-            
-            [dateFormatter setDateFormat:@"h:mma"];
-            
-            self.estimatedSegmentFlightArrivalTimeLabel.text = [dateFormatter stringFromDate:arrivalDate];
-            
-            [dateFormatter setDateFormat:@"(MMM d)"];
-            NSString *offsetDate = [dateFormatter stringFromDate:arrivalDate];
-            
-            NSDate *departDtWithoutTime = [self dateWithOutTime:scheduleDepartureDate];
-            NSDate *arriveDtWithoutTime = [self dateWithOutTime:arrivalDate];
-            
-            if ([departDtWithoutTime isEqualToDate:arriveDtWithoutTime]){
-                
-                self.lblDateOffsetEstimatedOrActualWidthConstraint.constant = 0;
-            }
-            else{
-                self.lblDateOffsetEstimatedOrActualWidthConstraint.constant = 45;
-                self.lblDateOffsetEstimatedOrActual.text = offsetDate;
-            }
-        }
-        else if (estArrival.length){
-            
-            self.estimatedSegmentRightLabel.text = @"Estimated";
-            [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
-            arrivalDate = [dateFormatter dateFromString: estArrival];
-            
-            [dateFormatter setDateFormat:@"h:mma"];
-            
-            self.estimatedSegmentFlightArrivalTimeLabel.text = [dateFormatter stringFromDate:arrivalDate];
-            
-            [dateFormatter setDateFormat:@"(MMM d)"];
-            NSString *offsetDate = [dateFormatter stringFromDate:arrivalDate];
-            
-            NSDate *departDtWithoutTime = [self dateWithOutTime:scheduleDepartureDate];
-            NSDate *arriveDtWithoutTime = [self dateWithOutTime:arrivalDate];
-            
-            if ([departDtWithoutTime isEqualToDate:arriveDtWithoutTime]){
-                
-                self.lblDateOffsetEstimatedOrActualWidthConstraint.constant = 0;
-            }
-            else{
-                self.lblDateOffsetEstimatedOrActualWidthConstraint.constant = 45;
-                self.lblDateOffsetEstimatedOrActual.text = offsetDate;
-            }
-        }
-        else{//always default to scheduled
-            
-            self.estimatedSegmentRightLabel.text = @"Scheduled";
-            self.estimatedSegmentFlightArrivalTimeLabel.text = self.flightArrivalTimeLabel.text;
-        }
-    
-    }
-    
-    //Gate Information
-    
-    if (self.flightStatusSegment.departureGate.length == 0)
-    {
-        self.departureGateLabel.text = @"N/A";
-    }
-    else
-    {
-        self.departureGateLabel.text = self.flightStatusSegment.departureGate;
-    }
-    
-    if (self.flightStatusSegment.arrivalGate.length == 0)
-    {
-        self.arrivalGateLabel.text = @"N/A";
-    }
-    else
-    {
-        self.arrivalGateLabel.text = self.flightStatusSegment.arrivalGate;
-    }
-    
-    //baggageClaimStatusLabel
-    self.baggageClaimStatusLabel.text = self.flightStatusSegment.baggage.bagClaimUnit;
-
+    self.baggageClaimStatusLabel.text = self.flightSegment.flightBaggageClaimCenterName;
 }
 
 # pragma mark - All Helper Methods
 
--(NSDate *)dateWithOutTime:(NSDate *)datDate
-{
-    if( datDate == nil ) {
-        datDate = [NSDate date];
-    }
-    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:datDate];
-    return [[NSCalendar currentCalendar] dateFromComponents:comps];
-}
-
-+ (NSString *)getWordFormatStringDatefrom: (NSString *)numberDate{
-    
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    NSLocale *timeLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [df setLocale:timeLocale];
-    [df setDateFormat:@"MM/dd/yyyy hh:mma"];
-    NSDate *flightDt = [df dateFromString: numberDate];
-    [df setDateFormat:@"EEE., MMM d, yyyy"];
-    NSString *flightDate = [df stringFromDate:flightDt];
-    return flightDate;
-}
-
-+ (NSString *)getHourlyOrMonthlyFormatNumberTimeFromDate: (NSString *)dateString withFormat: (NSString *)timeFormat{
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setAMSymbol:@"am"];
-    [dateFormatter setPMSymbol:@"pm"];
-    
-    NSLocale *timeLocale2 = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormatter setLocale:timeLocale2];
-    
-    [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mma"];
-    NSDate *dateObj = [dateFormatter dateFromString: dateString];
-    [dateFormatter setDateFormat: timeFormat];
-    return [dateFormatter stringFromDate: dateObj];
-}
-
-+ (NSDate *)getNSDateFromString: (NSString *)dateString withFormat: (NSString *)dateFormat{
-    
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    NSLocale *timeLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [df setLocale:timeLocale];
-    [df setDateFormat: dateFormat];
-    NSDate *dateObj = [df dateFromString: dateString];
-    return dateObj;
-}
-
 - (IBAction)shareFlightStatusButtonClicked:(UIButton *)sender {
     
-    [self.delegate composeMessageWithMOBFlightStatusSegment: self.flightStatusSegment];
+    [self.delegate composeMessageWithMOBFlightStatusSegment: self.flightSegment];
+}
+
+
+- (void) showAlertViewWithTitle: (NSString *)alertTitle message: (NSString *)alertMessage{
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:alertTitle message: alertMessage preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Continue" style: UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                          }];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

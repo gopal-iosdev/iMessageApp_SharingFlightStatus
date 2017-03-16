@@ -672,7 +672,7 @@
                                 <constraints>
                                     <constraint firstItem="ZxZ-4Q-0L0" firstAttribute="leading" secondItem="bnw-wK-ZWI" secondAttribute="leading" id="4nz-3v-uBC"/>
                                     <constraint firstAttribute="trailing" secondItem="ZxZ-4Q-0L0" secondAttribute="trailing" id="Phx-YZ-4wp"/>
-                                    <constraint firstItem="ZxZ-4Q-0L0" firstAttribute="top" secondItem="bnw-wK-ZWI" secondAttribute="top" id="hlx-QD-a8Z"/>
+                                    <constraint firstItem="ZxZ-4Q-0L0" firstAttribute="top" secondItem="bnw-wK-ZWI" secondAttribute="top" id="bSp-fG-Ewl"/>
                                     <constraint firstAttribute="bottom" secondItem="ZxZ-4Q-0L0" secondAttribute="bottom" id="kHQ-ob-pYO"/>
                                 </constraints>
                             </scrollView>
@@ -689,6 +689,7 @@
                     <connections>
                         <outlet property="arrivalGateLabel" destination="dIZ-EJ-uVa" id="uD5-87-oSt"/>
                         <outlet property="baggageClaimStatusLabel" destination="BKX-8m-lcA" id="99I-M3-B5Y"/>
+                        <outlet property="contentView" destination="ZxZ-4Q-0L0" id="jUE-sf-jUQ"/>
                         <outlet property="departureGateLabel" destination="hVy-9Q-IgJ" id="ZBc-av-YHT"/>
                         <outlet property="departureToArrivalCityLabel" destination="ZD6-8l-sYu" id="JQo-dr-Ifl"/>
                         <outlet property="estimatedSegmentFlightArrivalTimeLabel" destination="0qS-lZ-N1m" id="aik-Ck-C9Z"/>

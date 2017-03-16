@@ -51,7 +51,10 @@ static UALFlightStatusAdapter *gInstance = NULL;
     NSString* versionNumber = @"2.1.19I";
     NSString *urlString = [[NSString stringWithFormat:@"/FlightStatus/GetFlightStatus?applicationId=1&appversion=%@&accesscode=%@&transactionid=%@&flightnumber=%@&flightdate=%@&origin=%@&languagecode=%@", versionNumber, @"ACCESSCODE", transactionId, flightNumber, flightDate, origin, culture] stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding];
     
-    NSString *baseURL = [@"https://mobile-test.united.com/RESTDEV/api" stringByAppendingString: urlString];
+    NSString *devOrStageUrl = @"https://mobile-test.united.com/REST17CUAT/api";
+    NSString *prodUrl = @"https://smartphone.united.com/UnitedMobileDataServices/api";
+    
+    NSString *baseURL = [prodUrl stringByAppendingString: urlString];
     NSURL *url = [NSURL URLWithString: baseURL];
     return url;
 }

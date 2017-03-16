@@ -70,58 +70,27 @@ NSString *requestString;
     
     NSString *flightNumber = [[NSString alloc] init];
     flightNumber = self.flightNumberTextField.text;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSLocale *timeLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormatter setLocale:timeLocale];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *dt =  [dateFormatter stringFromDate:self.FlightDate];
     
+    NSDateFormatter *dateFormatterNew = [DateExtension getDateFormatterWithFormat: @"yyyy-MM-dd"];
+    NSString *flightDate =  [dateFormatterNew stringFromDate: (self.FlightDate? self.FlightDate: self.flightDepartDatePickerView.date)];
     NSString *origin = @"";
     
     __weak typeof(self) weakSelf = self;
     
-    requestString = [NSString stringWithFormat:@"FlightNumber:%@, FlightDate:%@, Origin:%@", flightNumber,dt,origin];
-    
-    [[UALFlightStatusAdapter singleton] getFlightStatus:flightNumber forFlightDate:dt forOrigin: origin : ^(UACFWSResponse *response){
-        [weakSelf flightStatusWithNumberCallCompleted:response];}];
-    
+    [[UALFlightSegment singleton] returnUALFlightSegementFor: flightNumber forFlightDate: flightDate forOrigin: origin completionHandler:^(UALFlightSegment *flightSegment) {
+        [weakSelf navigateToFlightStatusViewControllerWith: flightSegment];
+    }];
 }
 
-- (void)flightStatusWithNumberCallCompleted:(UACFWSResponse *)response{
+- (void)navigateToFlightStatusViewControllerWith: (UALFlightSegment *)flightSegment{
     
     [self updateAcitivityIndicatorWithFlag: 0];
-    self.activityIndicatorViewHeightConstraint.constant = 0;
-    if (response.Error == nil){
+    if (flightSegment.flightStatusCallFailed) {
         
-        NSString *jsonString = (NSString *)response.Result;
-        NSError *err = nil;
-        MOBFlightStatusResponse *flightStatusResponse = [[MOBFlightStatusResponse alloc] initWithString:jsonString error:&err];
-        if (err == nil){
-            
-            MOBException *exception = flightStatusResponse.exception;
-            if (!exception || [exception.code isEqualToString:@""] || exception.code.length){
-                
-                if (flightStatusResponse.flightStatusInfo.segments != nil && [flightStatusResponse.flightStatusInfo.segments count] > 0 && ([flightStatusResponse.flightStatusInfo.segments count] == 1)){
-                    
-                    MOBFlightStatusSegment *segment = [flightStatusResponse.flightStatusInfo.segments objectAtIndex:0];
-                    [self presentFlightStatusViewControllerWithResponse: segment];
-                    
-                }else{
-                    
-                    [self showAlertViewWithTitle: @"United Airlines" message: @" This is a MultiSegment Flight"];
-                }
-            }
-            else{
-                
-                NSString *errorMessage = exception.message;
-                [self showAlertViewWithTitle: @"United Airlines" message:errorMessage];
-            }
-        }
-        else{
-            
-            [self showAlertViewWithTitle: @"United Airlines" message: err.localizedDescription];
-        }
+        [self showAlertViewWithTitle: @"United Airlines" message: flightSegment.errorMessage];
+        return;
     }
+    [self presentFlightStatusViewControllerWithFlightSegment: flightSegment];
 }
 
 - (void) showAlertViewWithTitle: (NSString *)alertTitle message: (NSString *)alertMessage{
@@ -137,11 +106,11 @@ NSString *requestString;
 
 # pragma mark - Present Flight Status View Controller
 
-- (void)presentFlightStatusViewControllerWithResponse: (MOBFlightStatusSegment *)flightStatusSegment{
+- (void)presentFlightStatusViewControllerWithFlightSegment: (UALFlightSegment *)flightSegment{
     
     self.flightStatusViewController = (UALFlightStatusViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALFlightStatusViewController"];
     self.flightNumberSearchTitleLabelHeightConstraint.constant = 0;
-    self.flightStatusViewController.flightStatusSegment = flightStatusSegment;
+    self.flightStatusViewController.flightSegment = flightSegment;
     [self.view addSubview: self.flightStatusViewController.view];
     [self addChildViewController: self.flightStatusViewController];
     [self.flightStatusViewController didMoveToParentViewController: self];
@@ -160,9 +129,9 @@ NSString *requestString;
 
 # pragma mark - UALFlightStatusViewControllerDelegate
 
-- (void)composeMessageWithMOBFlightStatusSegment: (MOBFlightStatusSegment *)flightStatusSegment{
+- (void)composeMessageWithMOBFlightStatusSegment: (UALFlightSegment *)flightSegment{
     
-     [self.delegate composeMessageWithFlightStatusSegment: flightStatusSegment];
+     [self.delegate composeMessageWithFlightStatusSegment: flightSegment];
 }
 
 # pragma mark - All Helper Methods

@@ -35,6 +35,8 @@
 		4B4F58821E77B9B100E02400 /* UALFlightStatusAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58811E77B9B100E02400 /* UALFlightStatusAdapter.m */; };
 		4B4F58881E7883AA00E02400 /* United_Plane.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B4F58871E7883A900E02400 /* United_Plane.png */; };
 		4B4F588A1E78B2A000E02400 /* logo_ua.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B4F58891E78B2A000E02400 /* logo_ua.png */; };
+		4B4F58981E79D23E00E02400 /* UALFlightSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F58971E79D23E00E02400 /* UALFlightSegment.m */; };
+		4B4F589C1E79F26D00E02400 /* DateExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F589B1E79F26D00E02400 /* DateExtension.m */; };
 		56C661549B09FE1F80EE68B7 /* libPods-MySecond_iMessagesApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E293A202DB7130469A3AF3F0 /* libPods-MySecond_iMessagesApp.a */; };
 		BA879D22DCCD37AE3A74FC07 /* libPods-MessagesExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E947B4BE04CA052F0D13C8 /* libPods-MessagesExtension.a */; };
 /* End PBXBuildFile section */
@@ -116,6 +118,10 @@
 		4B4F58811E77B9B100E02400 /* UALFlightStatusAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UALFlightStatusAdapter.m; sourceTree = "<group>"; };
 		4B4F58871E7883A900E02400 /* United_Plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = United_Plane.png; sourceTree = "<group>"; };
 		4B4F58891E78B2A000E02400 /* logo_ua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ua.png; sourceTree = "<group>"; };
+		4B4F58961E79D23E00E02400 /* UALFlightSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UALFlightSegment.h; sourceTree = "<group>"; };
+		4B4F58971E79D23E00E02400 /* UALFlightSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UALFlightSegment.m; sourceTree = "<group>"; };
+		4B4F589A1E79F26D00E02400 /* DateExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateExtension.h; sourceTree = "<group>"; };
+		4B4F589B1E79F26D00E02400 /* DateExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateExtension.m; sourceTree = "<group>"; };
 		5B04DE110C265B663E239E36 /* Pods-MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesExtension/Pods-MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		A03B3A782B77F3D6F81704DD /* Pods-MySecond_iMessagesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecond_iMessagesApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MySecond_iMessagesApp/Pods-MySecond_iMessagesApp.release.xcconfig"; sourceTree = "<group>"; };
 		E293A202DB7130469A3AF3F0 /* libPods-MySecond_iMessagesApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MySecond_iMessagesApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +197,7 @@
 			children = (
 				4B4F58871E7883A900E02400 /* United_Plane.png */,
 				4B4F58891E78B2A000E02400 /* logo_ua.png */,
+				4B4F58991E79D25000E02400 /* UIModels */,
 				4B4F58361E7627EF00E02400 /* View Controllers */,
 				4B2A46DD1E71BB1200B016D6 /* MainInterface.storyboard */,
 				4B2A46E01E71BB1200B016D6 /* Assets.xcassets */,
@@ -274,6 +281,17 @@
 			children = (
 			);
 			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		4B4F58991E79D25000E02400 /* UIModels */ = {
+			isa = PBXGroup;
+			children = (
+				4B4F58961E79D23E00E02400 /* UALFlightSegment.h */,
+				4B4F58971E79D23E00E02400 /* UALFlightSegment.m */,
+				4B4F589A1E79F26D00E02400 /* DateExtension.h */,
+				4B4F589B1E79F26D00E02400 /* DateExtension.m */,
+			);
+			name = UIModels;
 			sourceTree = "<group>";
 		};
 		93D833765727A7C5A3FEBFAD /* Pods */ = {
@@ -475,6 +493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B4F58981E79D23E00E02400 /* UALFlightSegment.m in Sources */,
 				4B4F587C1E7769E900E02400 /* MOBAirportAdvisoryMessage.m in Sources */,
 				4B4F587B1E7769B500E02400 /* MOBAirport.m in Sources */,
 				4B4F587A1E7769A500E02400 /* MOBTypeOption.m in Sources */,
@@ -483,6 +502,7 @@
 				4B4F583D1E762D6000E02400 /* UACFWSResponse.m in Sources */,
 				4B2A46DC1E71BB1200B016D6 /* MessagesViewController.m in Sources */,
 				4B4F585F1E764C2600E02400 /* MOBAircraft.m in Sources */,
+				4B4F589C1E79F26D00E02400 /* DateExtension.m in Sources */,
 				4B4F584D1E764A2000E02400 /* MOBException.m in Sources */,
 				4B4F58501E764A9200E02400 /* MOBFlightStatusInfo.m in Sources */,
 				4B4F58591E764BCB00E02400 /* MOBFlightStatusSegment.m in Sources */,

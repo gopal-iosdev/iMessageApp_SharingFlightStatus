@@ -8,16 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "MOBFlightStatusSegment.h"
+#import "DateExtension.h"
+#import "UALFlightSegment.h"
 
 @protocol UALFlightStatusViewControllerDelegate <NSObject>
 
 @optional
 
-- (void)composeMessageWithMOBFlightStatusSegment: (MOBFlightStatusSegment *)flightStatusSegment;
+- (void)composeMessageWithMOBFlightStatusSegment: (UALFlightSegment *)flightSegment;
 
 @end
 
 @interface UALFlightStatusViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @property (weak, nonatomic) IBOutlet UILabel *flightNumAndDepartDateLabel;
 
@@ -72,12 +76,10 @@
 
 @property (strong, retain) MOBFlightStatusSegment *flightStatusSegment;
 
+@property (nonatomic, strong) UALFlightSegment *flightSegment;
+
 @property (weak, nonatomic) NSObject<UALFlightStatusViewControllerDelegate> *delegate;
 
-+ (NSString *)getWordFormatStringDatefrom: (NSString *)numberDate;
-
-+ (NSString *)getHourlyOrMonthlyFormatNumberTimeFromDate: (NSString *)dateString withFormat: (NSString *)timeFormat;
-
-+ (NSDate *)getNSDateFromString: (NSString *)dateString withFormat: (NSString *)dateFormat;
+@property (nonatomic, assign) BOOL makeFlightStatusWebServiceCall;
 
 @end

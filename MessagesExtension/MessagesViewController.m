@@ -13,7 +13,11 @@
 
 @property (nonatomic, strong) UALBaseMessageViewController *baseMessageViewController;
 
-@property (nonatomic, strong) UALFlightStatusMainViewController *flightStatusController;
+@property (nonatomic, strong) UALFlightStatusMainViewController *flightStatusMainController;
+
+@property (nonatomic, strong) UALFlightStatusViewController *flightStatusViewController;
+
+@property (nonatomic, strong) UALFlightSegment *flightSegmentForMessage;
 
 @end
 
@@ -29,7 +33,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-# pragma mark - Message
+# pragma mark - MSMessage Delegate Methods
 
 - (void)didSelectMessage:(MSMessage *)message
             conversation:(MSConversation *)conversation{
@@ -118,7 +122,14 @@
     }
     else{
         
-        controller = [self instantiateFlightStatusMainViewController];
+        if (conversation.selectedMessage.URL) {
+            [self fetchComponentsFromUrl: conversation.selectedMessage.URL];
+            controller = [self instantiateFlightStatusViewController];
+        }
+        else{
+            
+            controller = [self instantiateFlightStatusMainViewController];
+        }
     }
     
     [self.messagesView addSubview: controller.view];
@@ -140,41 +151,54 @@
 
 - (UIViewController *)instantiateFlightStatusMainViewController{
     
-    self.flightStatusController = (UALFlightStatusMainViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALFlightStatusMainViewController"];
-    self.flightStatusController.delegate = self;
-    return self.flightStatusController;
+    self.flightStatusMainController = (UALFlightStatusMainViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALFlightStatusMainViewController"];
+    self.flightStatusMainController.delegate = self;
+    return self.flightStatusMainController;
+}
+
+- (UIViewController *)instantiateFlightStatusViewController{
+    
+    self.flightStatusViewController = (UALFlightStatusViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"UALFlightStatusViewController"];
+    self.flightStatusViewController.delegate = self;
+    self.flightStatusViewController.flightSegment = self.flightSegmentForMessage;
+    self.flightStatusViewController.makeFlightStatusWebServiceCall = YES;
+    return self.flightStatusViewController;
 }
 
 # pragma mark - Send Or Insert Message
 
-- (void)sendOrInsertMessage: (MOBFlightStatusSegment *)flightStatusSegment{
+- (void)sendOrInsertMessage: (UALFlightSegment *)flightSegment{
     
-    MSMessage *message = [[MSMessage alloc] init];
+    MSSession *messageSession = [[MSSession alloc] init];
+    
+    MSMessage *message = [[MSMessage alloc] initWithSession: messageSession];
     
     MSMessageTemplateLayout *messageLayout = [[MSMessageTemplateLayout alloc]init];
     
-    NSString *flightDate = [UALFlightStatusViewController getWordFormatStringDatefrom: flightStatusSegment.scheduledDepartureDateTime];
-    messageLayout.imageTitle = [NSString stringWithFormat:@"%@%@ / %@", @"UA", flightStatusSegment.flightNumber, flightDate];
+    messageLayout.imageTitle = [NSString stringWithFormat:@"%@%@ / %@", @"UA", flightSegment.flightNumber, flightSegment.flightDepartDay];
     
-    NSString *origin = flightStatusSegment.departure.city? flightStatusSegment.departure.city: flightStatusSegment.departure.code;
-    NSString *destination = flightStatusSegment.arrival.city? flightStatusSegment.arrival.city: flightStatusSegment.arrival.code;;
-    messageLayout.imageSubtitle = [NSString stringWithFormat:@"%@ to %@", origin, destination];
+    messageLayout.imageSubtitle = [NSString stringWithFormat:@"%@ to %@", flightSegment.flightDepartCityName, flightSegment.flightArrivalCityName];
     
-    messageLayout.caption = flightStatusSegment.departure.code;
-    messageLayout.subcaption = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: flightStatusSegment.scheduledDepartureDateTime withFormat: @"h:mma"];
+    messageLayout.caption = flightSegment.flightDepartureCode;
+    messageLayout.subcaption = flightSegment.flightScheduledDepartureTime;
     
-    messageLayout.trailingCaption = flightStatusSegment.arrival.code;
-    NSString *arrivalTime = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: flightStatusSegment.scheduledArrivalDateTime withFormat: @"h:mma"];
-    NSString *arrivalDay = [UALFlightStatusViewController getHourlyOrMonthlyFormatNumberTimeFromDate: flightStatusSegment.scheduledArrivalDateTime withFormat: @"(MMM d)"];
-    messageLayout.trailingSubcaption = [NSString stringWithFormat: @"%@%@", arrivalTime, arrivalDay];
+    messageLayout.trailingCaption = flightSegment.flightArrivalCode;
+    messageLayout.trailingSubcaption = [NSString stringWithFormat: @"%@%@", flightSegment.flightScheduledArrivalTime, flightSegment.flightScheduledArrivalDay];
     
     messageLayout.image = [UIImage imageNamed: @"United_Plane.png"];
-    
-    NSURL *flightStatusUrl = [self composeNavigationUrlForFlightStatusSegment: flightStatusSegment];
-    
-    message.URL = flightStatusUrl;
+    message.URL = [self composeNavigationUrlForFlightStatusSegment: flightSegment];
     message.layout = messageLayout;
-    [self.activeConversation insertMessage: message completionHandler: nil];
+    
+    message.summaryText = @"Message Summary Text";
+    
+    //[self.activeConversation insertMessage: message completionHandler: nil];
+    
+    [self.activeConversation insertMessage:message completionHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error sending message %@", [error localizedDescription]);
+        }
+    }];
+    
     [self dismiss];
     
 
@@ -202,40 +226,57 @@
 
 # pragma mark Compose Message
 
-- (void)composeMessageWithFlightStatusSegment: (MOBFlightStatusSegment *)flightStatusSegment{
-    
-    [self sendOrInsertMessage: flightStatusSegment];
+- (void)composeMessageWithFlightStatusSegment: (UALFlightSegment *)flightSegment{
+    [self sendOrInsertMessage: flightSegment];
+}
+
+- (void)composeMessageWithMOBFlightStatusSegment: (UALFlightSegment *)flightSegment{
+    [self sendOrInsertMessage: flightSegment];
 }
 
 
 
 # pragma mark - All Helper Methods
 
-- (NSURL *)composeNavigationUrlForFlightStatusSegment: (MOBFlightStatusSegment *)flightStatusSegment{
+- (NSURL *)composeNavigationUrlForFlightStatusSegment: (UALFlightSegment *)flightSegment{
     
     NSString *testurlString = @"https://mobile.united.com/FlightStatus/FlightDetails?carrierCode=UA&flightNumber=83&flightDate=03%2F14%2F2017%2000%3A00%3A00&origin=BOM&destination=EWR&GUID=9cb46164-a8f8-4148-b818-eef1ee36825a";//https://mobile.united.com/FlightDetails?carrierCode=UA&flightNumber=887&flightDate=03/14/2017&origin=YVR&destination=SFO&GUID=9cb46164-a8f8-4148-b818-eef1ee36825a
     
-    NSString *flightNumber = flightStatusSegment.flightNumber;
-    
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    NSLocale *timeLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [df setLocale:timeLocale];
-    [df setDateFormat:@"MM/dd/yyyy hh:mma"];
-    NSDate *flightDt = [df dateFromString: flightStatusSegment.scheduledDepartureDateTime];
-    [df setDateFormat:@"MM/dd/yyyy"];
-    NSString *flightDate = [df stringFromDate:flightDt];
-    
-    NSString* origin = flightStatusSegment.departure.code;
-    NSString* destination = flightStatusSegment.arrival.code;
-    
     NSString *gUID = @"9cb46164-a8f8-4148-b818-eef1ee36825a";
     
-    NSString *urlString = [[NSString stringWithFormat:@"/FlightDetails?carrierCode=UA&flightNumber=%@&flightDate=%@&origin=%@&destination=%@&GUID=%@", flightNumber, flightDate, origin, destination, gUID] stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding];
+    NSURLComponents *components = [NSURLComponents componentsWithString:@"https://mobile.united.com/FlightStatus/FlightDetails"];
+    NSURLQueryItem *carrierCode = [NSURLQueryItem queryItemWithName: @"carrierCode" value: @"UA"];
+    NSURLQueryItem *flightNumber = [NSURLQueryItem queryItemWithName: @"flightNumber" value: flightSegment.flightNumber];
+    NSURLQueryItem *flightDate = [NSURLQueryItem queryItemWithName: @"flightDate" value: flightSegment.flightDateForMakingUrl];
+    NSURLQueryItem *origin = [NSURLQueryItem queryItemWithName: @"origin" value: flightSegment.flightDepartureCode];
+    NSURLQueryItem *destination = [NSURLQueryItem queryItemWithName: @"destination" value: flightSegment.flightArrivalCode];
+    NSURLQueryItem *GUID = [NSURLQueryItem queryItemWithName: @"GUID" value: gUID];
     
-    NSString *baseURL = [@"https://mobile.united.com" stringByAppendingString: urlString];
-    NSURL *url = [NSURL URLWithString: baseURL];
-    return url;
+    [components setQueryItems: @[carrierCode, flightNumber, flightDate, origin, destination, GUID]];
+    
+    return components.URL;
+}
 
+- (void)fetchComponentsFromUrl: (NSURL *)url{
+    
+    self.flightSegmentForMessage = [UALFlightSegment new];
+    NSURLComponents *components = [NSURLComponents componentsWithURL: url resolvingAgainstBaseURL: NO];
+    NSString *flightNumber, *flightDate, *flightOrigin;
+    for (NSURLQueryItem *item in components.queryItems) {
+        if ([item.name isEqualToString:@"flightNumber"]) {
+            flightNumber = item.value;
+            self.flightSegmentForMessage.flightNumber = item.value;
+        }
+        else if([item.name isEqualToString:@"flightDate"]){
+            flightDate = item.value;
+            self.flightSegmentForMessage.flightDateForMakingUrl = item.value;
+        }
+        else if ([item.name isEqualToString:@"origin"]){
+            flightOrigin = item.value;
+            self.flightSegmentForMessage.flightDepartureCode = item.value;
+        }
+    }
+    NSLog(@"flightNumber: %@\nflightDate: %@\nflightOrigin :%@", flightNumber, flightDate, flightOrigin);
 }
 
 @end

@@ -10,8 +10,10 @@
 #import "UALBaseMessageViewController.h"
 #import "UALFlightStatusMainViewController.h"
 #import <UIKit/UIKit.h>
+#import "DateExtension.h"
+#import "UALFlightSegment.h"
 
-@interface MessagesViewController : MSMessagesAppViewController<UALBaseMessageViewControllerDelegate, UALFlightStatusMainViewControllerDelegate>
+@interface MessagesViewController : MSMessagesAppViewController<UALBaseMessageViewControllerDelegate, UALFlightStatusMainViewControllerDelegate, UALFlightStatusViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *messagesView;
 

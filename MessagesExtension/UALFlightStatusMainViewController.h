@@ -19,7 +19,7 @@
 
 - (void)expandFlightStatusMainViewController: (UITextField *)textField;
 
-- (void)composeMessageWithFlightStatusSegment: (MOBFlightStatusSegment *)flightStatusSegment;
+- (void)composeMessageWithFlightStatusSegment: (UALFlightSegment *)flightSegment;
 
 @end
 
