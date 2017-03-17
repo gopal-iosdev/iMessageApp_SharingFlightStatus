@@ -65,6 +65,8 @@ typedef void (^flightSegmentResponseCompletionHandler)(UALFlightSegment*);
 
 @property (nonatomic, strong) NSString *flightBaggageClaimCenterName;
 
+@property (nonatomic, assign) BOOL showShareFlightStatusButton;
+
 - (void)returnUALFlightSegementFor:(NSString *)flightNumber forFlightDate:(NSString *)flightDate forOrigin:(NSString *)origin completionHandler:(flightSegmentResponseCompletionHandler)handler;
 
 @end

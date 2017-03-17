@@ -102,7 +102,7 @@
 
 - (void) presentViewControllerForconversation:(MSConversation *)conversation withPresentationStyle: (MSMessagesAppPresentationStyle)presentationStyle{
     
-    for (UIView *childVw in self.messagesView.subviews) {
+    for (UIView *childVw in self.messagesSubView.subviews) {
         
         for (UIView *childSubVw in childVw.subviews) {
             [childSubVw removeFromSuperview];
@@ -115,8 +115,6 @@
     
     //controller = [self instantiateFlightStatusMainViewController];
     
-    CGFloat yPosition = 0;
-    
     if (presentationStyle == MSMessagesAppPresentationStyleCompact) {
         controller = [self instantiateBaseMessageViewController];
     }
@@ -124,18 +122,17 @@
         if (conversation.selectedMessage.URL) {
             [self fetchComponentsFromUrl: conversation.selectedMessage.URL];
             controller = [self instantiateFlightStatusViewController];
-            yPosition = -5;
         }
         else{
             controller = [self instantiateFlightStatusMainViewController];
         }
     }
     
-    [self.messagesView addSubview: controller.view];
+    [self.messagesSubView addSubview: controller.view];
     [self addChildViewController: controller];
     [controller didMoveToParentViewController: self];
     
-    controller.view.frame = CGRectMake(0, yPosition, self.messagesView.frame.size.width, self.messagesView.frame.size.height);
+    controller.view.frame = CGRectMake(0, 0, self.messagesSubView.frame.size.width, self.messagesSubView.frame.size.height);
     [self.navigationController presentViewController: controller animated: YES completion: nil];
 }
 
@@ -192,8 +189,6 @@
     
     message.summaryText = [NSString stringWithFormat: @"%@ has Shared Flight Status With You", userName];
     
-    //[self.activeConversation insertMessage: message completionHandler: nil];
-    
     [self.activeConversation insertMessage:message completionHandler:^(NSError *error) {
         if (error) {
             NSLog(@"Error sending message %@", [error localizedDescription]);
@@ -202,15 +197,8 @@
     
     [self dismiss];
     
-
-//    NSData *dataImage = UIImageJPEGRepresentation([self imageWithView:self.myViewBgImageConLogoDaSalvare], 0.0);
-//    [dataImage writeToURL:urlImage atomically:true];
-//    
-//    [savedConversation insertAttachment:urlImage withAlternateFilename:nil completionHandler:^(NSError * error) {
-//        
-//    }];
-
-    //[self.activeConversation insertMessage:<#(nonnull MSMessage *)#> completionHandler:<#^(NSError * _Nullable)completionHandler#>]
+//    NSUUID *messageSenderId = conversation.selectedMessage.senderParticipantIdentifier;
+//    NSUUID *messageReceiverId = conversation.localParticipantIdentifier;
 }
 
 # pragma mark - Delegate Methods

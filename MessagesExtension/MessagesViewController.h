@@ -17,5 +17,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *messagesView;
 
+@property (weak, nonatomic) IBOutlet UIView *messagesSubView;
+
 
 @end
