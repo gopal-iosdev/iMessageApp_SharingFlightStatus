@@ -10,16 +10,16 @@
 
 ### 1.) Singleton objects SHOULD use a thread-safe pattern for creating their shared instance.
 
-- Ex:
-+ (instancetype)sharedInstance {
+    Ex:
+    +(instancetype)sharedInstance {
 
-static id sharedInstance = nil;
-static dispatch_once_t onceToken;
-dispatch_once(&onceToken, ^{
-sharedInstance = [[[self class] alloc] init];
-});
-return sharedInstance;
-}
+        static id sharedInstance = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+        sharedInstance = [[[self class] alloc] init];
+    });
+    return sharedInstance;
+    }
 
 ## Coding Style
 
