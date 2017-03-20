@@ -51,10 +51,12 @@ you say it, but how you say it.
 
     Ex:
         // Too brief & Lack of context
+        
         NSString *a = "A"
         NSString *b = "B"
 
         // How I would do it
+
         NSString *capLetterA = "A"
         NSString *capLetterB = "B"
 
