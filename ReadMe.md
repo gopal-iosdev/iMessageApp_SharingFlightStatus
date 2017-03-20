@@ -11,15 +11,17 @@
 #### 1.) Singleton objects SHOULD use a thread-safe pattern for creating their shared instance.
 
     Ex:
-    +(instancetype)sharedInstance {
 
-        static id sharedInstance = nil;
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-        sharedInstance = [[[self class] alloc] init];
-    });
-    return sharedInstance;
-    }
+
+        +(instancetype)sharedInstance {
+
+            static id sharedInstance = nil;
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                sharedInstance = [[[self class] alloc] init];
+            });
+        return sharedInstance;
+        }
 
 ### Coding Style
 
@@ -37,8 +39,8 @@ are using MVC which stands for Massive View Controller you may want to find out 
 
 + The reason we can auto-complete a lot of properties in Xcode is due to Enums.
 
-    
     Ex:
+
         
         typedef enum{
 
@@ -121,8 +123,9 @@ declared as #define when explicitly being used as a macro.
         #define CompanyName @"The New York Times Company"
 
 #### 9.) If there is more than one import statement, statements MUST be grouped together. Groups MAY be commented or pragma marked.
-    
+
     Ex:
+
 
         // Frameworks
         Or 
