@@ -56,6 +56,7 @@ are using MVC which stands for Massive View Controller you may want to find out 
 you say it, but how you say it.
 
     Ex:
+        
         // Too brief & Lack of context
         
         NSString *a = "A"
@@ -75,6 +76,7 @@ you say it, but how you say it.
 the number of conditions. Doesn't make much of a difference if you only have a few cases though.
 
     Ex: 
+        
         -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath
         *)indexPath;
 
@@ -111,14 +113,17 @@ the need for find and replace. Constants MUST be declared as static constants. C
 declared as #define when explicitly being used as a macro.
 
     Ex:
+        
         static NSString * const NYTAboutViewControllerCompanyName = @"The New York Times Company";
 
     Not:
+        
         #define CompanyName @"The New York Times Company"
 
 #### 9.) If there is more than one import statement, statements MUST be grouped together. Groups MAY be commented or pragma marked.
-
+    
     Ex:
+
         // Frameworks
         Or 
         # pragma mark Frameworks
