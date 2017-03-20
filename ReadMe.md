@@ -39,7 +39,6 @@ are using MVC which stands for Massive View Controller you may want to find out 
 
     Ex:
         typedef enum{
-
             ChasePromoType_NONE = 0,
             ChasePromoType_50K = 1,
             ChasePromoType_70K = 2,
@@ -60,8 +59,7 @@ you say it, but how you say it.
         NSString *capLetterB = "B"
 
     Url:
-        https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/
-        NamingMethods.html
+        https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingMethods.html
 
 #### 5.) If there are more than one if - else statement try to use Switch.
 
@@ -72,7 +70,7 @@ the number of conditions. Doesn't make much of a difference if you only have a f
         -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath
         *)indexPath;
 
-+ Note: However if you are using some more complex conditions (maybe even including functions in the condition),
++ *Note*: However if you are using some more complex conditions (maybe even including functions in the condition),
         well then you should use if statements.
 
 #### 6.) Don’t Rely on Segues
@@ -115,7 +113,7 @@ declared as #define when explicitly being used as a macro.
     Ex:
         // Frameworks
         Or 
-        #pragma mark Frameworks
+        # pragma mark Frameworks
 
         #import <UnifiedPlayerLibrary/UnifiedPlayer.h>
 
