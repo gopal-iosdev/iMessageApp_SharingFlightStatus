@@ -12,7 +12,6 @@
 
     Ex:
 
-
         +(instancetype)sharedInstance {
 
             static id sharedInstance = nil;
@@ -94,6 +93,8 @@ Therefore, use Delegate/NSNotification to send data. Use multiple storyboards in
 #### 7.) If you are creating a global method which is used in other classes try to document it.
 
     Ex: UALImageDownloader.h
+
+    
         /*!
 
         * @brief Returns Image if it's already available in cache, if not it downloads the image based on the url and caches it.
@@ -125,7 +126,6 @@ declared as #define when explicitly being used as a macro.
 #### 9.) If there is more than one import statement, statements MUST be grouped together. Groups MAY be commented or pragma marked.
 
     Ex:
-
 
         // Frameworks
         Or 
