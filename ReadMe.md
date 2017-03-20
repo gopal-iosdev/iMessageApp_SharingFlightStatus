@@ -38,10 +38,15 @@ are using MVC which stands for Massive View Controller you may want to find out 
 + The reason we can auto-complete a lot of properties in Xcode is due to Enums.
 
     Ex:
+        
         typedef enum{
+
             ChasePromoType_NONE = 0,
+
             ChasePromoType_50K = 1,
+
             ChasePromoType_70K = 2,
+
         } ChasePromoType;
 
 #### 4.) Name. Be descriptive. Styling Guide
