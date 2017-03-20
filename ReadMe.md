@@ -10,7 +10,7 @@
 
 #### 1.) Singleton objects SHOULD use a thread-safe pattern for creating their shared instance.
 
-    Ex:
+    Ex: 
 
         +(instancetype)sharedInstance {
 
